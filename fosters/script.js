@@ -1,7 +1,7 @@
 // ── DEFAULTS ──────────────────────────────────
 const DEFAULTS = {
   heroBg:        'images/hero.jpeg',
-  heroBadge: 'Admissions Open · 2025–26 · Bhirr, Buhana',
+  heroBadge: 'Admissions Open · 2026–27 · Bhirr, Buhana',
   heroH1: 'Where Every Child\'s\nFuture Begins\nwith Joy & Care',
   heroP: 'Foster Play School, Bhirr, Buhana — a warm and nurturing early learning environment designed to spark curiosity, build confidence and celebrate every child\'s unique potential.',
   stat1N: '200+', stat1L: 'Happy Students',
