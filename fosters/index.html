@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FosterKids Play School — Bhirr, Buhana | Where Little Stars Shine</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ── WHATSAPP FLOAT ── -->
+<a href="https://wa.me/919729313222" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <div class="wa-ring"></div>
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- ── MOBILE BOTTOM BAR ── -->
+<div class="mob-bar">
+  <a href="tel:+919729313222" class="mb-call"><i class="fa-solid fa-phone"></i> Call</a>
+  <a href="https://wa.me/919729313222" target="_blank" class="mb-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+  <a href="#admissions" class="mb-adm"><i class="fa-solid fa-star"></i> Admissions</a>
+</div>
+
+<!-- ── MOBILE DRAWER ── -->
+<div id="drawer">
+  <span class="dclose" onclick="closeD()"><i class="fa-solid fa-xmark"></i></span>
+  <a class="dlink" href="#about"      onclick="closeD()">About</a>
+  <a class="dlink" href="#programs"   onclick="closeD()">Programs</a>
+  <a class="dlink" href="#founder"    onclick="closeD()">Founder</a>
+  <a class="dlink" href="#admissions" onclick="closeD()">Admissions</a>
+  <a class="dlink" href="#gallery"    onclick="closeD()">Gallery</a>
+  <a class="dlink" href="#location"   onclick="closeD()">Location</a>
+  <div class="d-sep"></div>
+  <a class="d-admit-btn" href="#admissions" onclick="closeD()"><i class="fa-solid fa-star"></i> Enquire Now</a>
+</div>
+
+<!-- ── NAVBAR ── -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-svg" viewBox="0 0 48 48" fill="none">
+      <rect width="48" height="48" rx="12" fill="white" opacity="0.95"/>
+      <circle cx="17" cy="14" r="5" fill="#E91E8C"/>
+      <path d="M10 32 Q17 22 24 32" fill="#E91E8C"/>
+      <circle cx="31" cy="12" r="5" fill="#5C2D91"/>
+      <path d="M24 32 Q31 20 38 32" fill="#5C2D91"/>
+      <path d="M22 8 L23 6 L24 8 L26 8 L24.5 9.5 L25 12 L23 10.5 L21 12 L21.5 9.5 L20 8 Z" fill="#F5A623"/>
+    </svg>
+    <div class="nav-logo-text">
+      <div class="nl-name"><span class="fk-purple">Foster</span><span class="fk-pink">Kids</span></div>
+      <div class="nl-sub">Play School · Bhirr, Buhana</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#admissions">Admissions</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#location">Location</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://www.instagram.com/fosterkidsbuhana?igsh=MXd5NngyOW13bnI5Ng==" target="_blank" class="nav-ig">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="#admissions" class="nav-admit">Admissions Open</a>
+  </div>
+  <div class="ham" onclick="openD()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <svg class="hero-wave" viewBox="0 0 1440 90" fill="none" preserveAspectRatio="none">
+    <path d="M0,45 C360,90 720,0 1080,45 C1260,68 1380,30 1440,45 L1440,90 L0,90 Z" fill="#FDF8FF"/>
+  </svg>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><i class="fa-solid fa-award"></i> <span id="heroBadge"></span></div>
+      <h1 class="hero-h1" id="heroH1"></h1>
+      <p class="hero-p" id="heroP"></p>
+      <div class="hero-btns">
+        <a href="#admissions" class="btn-gold"><i class="fa-solid fa-door-open"></i> Apply for Admission</a>
+        <a id="waHeroBtn" href="#" target="_blank" class="btn-wa-hero"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-n" id="stat1N"></div><div class="hstat-l" id="stat1L"></div></div>
+        <div class="hstat"><div class="hstat-n" id="stat2N"></div><div class="hstat-l" id="stat2L"></div></div>
+        <div class="hstat"><div class="hstat-n" id="stat3N"></div><div class="hstat-l" id="stat3L"></div></div>
+        <div class="hstat"><div class="hstat-n" id="stat4N"></div><div class="hstat-l" id="stat4L"></div></div>
+      </div>
+    </div>
+    <div class="hero-right-grid">
+      <div class="himg"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=82" alt="Kids"/><div class="himg-label">Happy Kids</div></div>
+      <div class="himg"><img src="https://images.unsplash.com/photo-1555009393-f20bdb245c4d?w=400&q=80" alt="Art"/><div class="himg-label">Art & Craft</div></div>
+      <div class="himg"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&q=80" alt="Play"/><div class="himg-label">Play & Learn</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" class="sec" style="background:#fff;">
+  <div class="about-grid">
+    <div class="about-img-stack fade">
+      <div class="ai-main"><img id="aboutImg1" src="" alt="School"/></div>
+      <div class="ai-sub"><img id="aboutImg2" src="" alt="Students"/></div>
+      <div class="about-badge">
+        <div class="ab-n" id="aboutBadgeNum"></div>
+        <div class="ab-l" id="aboutBadgeLbl"></div>
+      </div>
+    </div>
+    <div>
+      <div class="s-label sl-purple fade"><i class="fa-solid fa-school"></i> About FosterKids</div>
+      <h2 class="s-title fade d1" id="aboutTitle"></h2>
+      <p class="fade d2" style="font-size:16px;color:var(--body);line-height:2;margin-top:16px;" id="aboutP1"></p>
+      <p class="fade d3" style="font-size:16px;color:var(--body);line-height:2;margin-top:12px;" id="aboutP2"></p>
+      <div class="about-pills fade d3">
+        <span class="apill ap1">Play Group</span>
+        <span class="apill ap2">Pre-Nursery</span>
+        <span class="apill ap3">Nursery</span>
+        <span class="apill ap4">Activity Based</span>
+        <span class="apill ap5">Play & Learn</span>
+      </div>
+      <div class="about-feats fade d4">
+        <div class="ab-f">
+          <div class="ab-f-ico" style="background:var(--soft);"><i class="fa-solid fa-shield-halved" style="color:var(--purple);font-size:17px;"></i></div>
+          <div><div class="ab-f-t">Safe Campus</div><div class="ab-f-s">CCTV-monitored, child-safe campus with secure entry.</div></div>
+        </div>
+        <div class="ab-f">
+          <div class="ab-f-ico" style="background:#FFF0F8;"><i class="fa-brands fa-whatsapp" style="color:var(--pink);font-size:17px;"></i></div>
+          <div><div class="ab-f-t">Daily Parent Updates</div><div class="ab-f-s">Photos and updates shared daily on WhatsApp.</div></div>
+        </div>
+        <div class="ab-f">
+          <div class="ab-f-ico" style="background:#FFF8E0;"><i class="fa-solid fa-bus" style="color:#8B6000;font-size:17px;"></i></div>
+          <div><div class="ab-f-t">School Transport</div><div class="ab-f-s">Safe bus service covering Bhirr, Buhana and nearby areas.</div></div>
+        </div>
+        <div class="ab-f">
+          <div class="ab-f-ico" style="background:#E8FFF5;"><i class="fa-solid fa-utensils" style="color:#006B3C;font-size:17px;"></i></div>
+          <div><div class="ab-f-t">Nutrition & Hygiene</div><div class="ab-f-s">Clean, hygienic facilities and healthy meal breaks.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROGRAMS ── -->
+<section id="programs" class="sec">
+  <div class="prog-hd">
+    <div class="s-label sl-white fade" style="justify-content:center;margin:0 auto 14px;"><i class="fa-solid fa-star"></i> Our Programs</div>
+    <h2 class="s-title light fade d1">Learning Programs at <span class="c-gold">FosterKids</span></h2>
+    <p class="s-sub fade d2" style="color:rgba(255,255,255,.5);margin:12px auto 0;text-align:center;">Every program is crafted for tiny learners — joyful, activity-based and age-appropriate.</p>
+  </div>
+  <div class="prog-grid">
+    <div class="prog-card fade d1">
+      <div class="prog-img"><img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=500&q=80" alt="Play Group"/><div class="prog-img-overlay"></div></div>
+      <div class="prog-body">
+        <div class="prog-name">Play Group</div>
+        <p class="prog-desc">Fun-filled first steps into school life through games, songs and creative play activities.</p>
+        <div class="prog-age"><i class="fa-solid fa-child"></i> Age 1.5 – 2.5 Years</div>
+      </div>
+    </div>
+    <div class="prog-card fade d2">
+      <div class="prog-img"><img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=500&q=80" alt="Pre Nursery"/><div class="prog-img-overlay"></div></div>
+      <div class="prog-body">
+        <div class="prog-name">Pre-Nursery</div>
+        <p class="prog-desc">Gentle, nurturing introduction to school through sensory play, stories and creative activities.</p>
+        <div class="prog-age"><i class="fa-solid fa-child"></i> Age 2.5 – 3.5 Years</div>
+      </div>
+    </div>
+    <div class="prog-card fade d3">
+      <div class="prog-img"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&q=80" alt="Nursery"/><div class="prog-img-overlay"></div></div>
+      <div class="prog-body">
+        <div class="prog-name">Nursery</div>
+        <p class="prog-desc">Building early literacy, numeracy and social skills in a fun, loving environment.</p>
+        <div class="prog-age"><i class="fa-solid fa-child"></i> Age 3.5 – 5 Years</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOUNDER ── -->
+<section id="founder" class="sec">
+  <div class="founder-ribbon fade"><i class="fa-solid fa-crown"></i> Our Founder</div>
+  <h2 class="s-title fade d1">Vision Behind <span class="c-purple">FosterKids</span></h2>
+  <div class="founder-wrap">
+    <div class="founder-img-col fade">
+      <div class="founder-photo-wrap">
+        <div class="founder-deco"></div>
+        <img class="founder-photo" id="founderPhoto" src="" alt="Founder"/>
+        <div class="founder-badge-card">
+          <div class="fb-name" id="founderName"></div>
+          <div class="fb-role" id="founderRole"></div>
+        </div>
+      </div>
+    </div>
+    <div class="founder-card fade d2">
+      <div class="founder-big-q">"</div>
+      <div class="fc-top">
+        <div class="fc-av"><img id="founderAvatar" src="" alt="Founder"/></div>
+        <div>
+          <div class="fc-name" id="founderCardName"></div>
+          <div class="fc-role" id="founderCardRole"></div>
+        </div>
+      </div>
+      <p class="fc-text" id="founderMsg"></p>
+      <div class="fc-sign" id="founderSign"></div>
+      <div class="fc-sign-sub" id="founderQuals"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ADMISSIONS ── -->
+<section id="admissions" class="sec" style="background:#fff;">
+  <div class="adm-open-banner fade">
+    <div>
+      <div class="aob-title" id="admBannerTitle"></div>
+      <div class="aob-sub" id="admBannerSub"></div>
+    </div>
+    <a id="admWaBtn" href="#" target="_blank" class="aob-btn">
+      <i class="fa-brands fa-whatsapp" style="color:var(--green);font-size:18px;"></i> Enquire on WhatsApp
+    </a>
+  </div>
+  <div class="s-label sl-pink fade"><i class="fa-solid fa-door-open"></i> Admissions</div>
+  <h2 class="s-title fade d1">Join the <span class="c-pink">FosterKids</span> Family</h2>
+  <div class="adm-grid">
+    <div>
+      <p class="fade d2" style="font-size:15.5px;color:var(--body);line-height:1.9;margin-top:14px;" id="admText"></p>
+      <div class="adm-steps fade d3">
+        <div class="adm-step"><div class="step-num sn1">1</div><div><div class="step-t">Submit Enquiry</div><div class="step-s">Fill the form or WhatsApp us with your child's basic details.</div></div></div>
+        <div class="adm-step"><div class="step-num sn2">2</div><div><div class="step-t">Campus Visit</div><div class="step-s">Schedule a visit to our school in Bhirr and meet our team.</div></div></div>
+        <div class="adm-step"><div class="step-num sn3">3</div><div><div class="step-t">Interaction Session</div><div class="step-s">A warm, pressure-free interaction session with your child.</div></div></div>
+        <div class="adm-step"><div class="step-num sn4">4</div><div><div class="step-t">Confirm Admission</div><div class="step-s">Complete registration and welcome to the FosterKids family!</div></div></div>
+      </div>
+    </div>
+    <div class="adm-form fade d2">
+      <div class="form-title">Admission Enquiry</div>
+      <div class="form-sub">Fill in the details — we'll respond within 24 hours!</div>
+      <div class="frow">
+        <div class="fg"><label>Parent Name</label><input type="text" id="pName" placeholder="Your full name"/></div>
+        <div class="fg"><label>Child's Name</label><input type="text" id="cName" placeholder="Child's name"/></div>
+      </div>
+      <div class="fg"><label>Phone Number</label><input type="tel" id="phone" placeholder="+91 00000 00000"/></div>
+      <div class="frow">
+        <div class="fg"><label>Applying For</label>
+          <select id="grade">
+            <option value="" disabled selected>Select program</option>
+            <option>Play Group</option><option>Pre-Nursery</option><option>Nursery</option>
+          </select>
+        </div>
+        <div class="fg"><label>Child's Age</label>
+          <select id="age">
+            <option value="" disabled selected>Select age</option>
+            <option>1.5 years</option><option>2 years</option><option>2.5 years</option>
+            <option>3 years</option><option>3.5 years</option><option>4 years</option>
+            <option>4.5 years</option><option>5 years</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Message (Optional)</label><textarea id="msg" placeholder="Any questions or special requirements..."></textarea></div>
+      <button class="form-submit" onclick="sendEnquiryWA()">
+        <i class="fa-brands fa-whatsapp" style="font-size:20px;"></i> Send via WhatsApp
+      </button>
+      <div class="form-divider"><span>or</span></div>
+      <button class="form-submit-email" onclick="sendEnquiryEmail()">
+        <i class="fa-solid fa-envelope" style="font-size:18px;"></i> Send via Email
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ── -->
+<section id="gallery" class="sec">
+  <div class="gal-top">
+    <div>
+      <div class="s-label sl-green fade"><i class="fa-solid fa-images"></i> School Life</div>
+      <h2 class="s-title fade d1">Gallery</h2>
+    </div>
+    <p class="s-sub fade d2" style="margin-top:0;">Glimpses of joyful learning, play and celebrations at FosterKids Bhirr.</p>
+  </div>
+  <div class="gallery-slider-wrap fade">
+    <button class="gal-arrow gal-arrow-left" onclick="slideGallery(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="gallery-slider" id="gallerySlider"></div>
+    <button class="gal-arrow gal-arrow-right" onclick="slideGallery(1)"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+  <div class="gal-dots" id="galDots"></div>
+  <div class="ig-strip fade" style="margin-top:28px;">
+    <div class="ig-strip-left">
+      <div class="ig-strip-icon"><i class="fa-brands fa-instagram"></i></div>
+      <div>
+        <div class="ig-handle" id="igHandle"></div>
+        <div class="ig-desc">Follow us for daily school updates, events and student moments</div>
+      </div>
+    </div>
+    <a id="igFollowLink" href="#" target="_blank" class="ig-follow-btn">
+      <i class="fa-brands fa-instagram"></i> Follow on Instagram
+    </a>
+  </div>
+</section>
+
+<!-- ── LOCATION ── -->
+<section id="location" class="sec" style="background:#fff;">
+  <div class="s-label sl-gold fade"><i class="fa-solid fa-location-dot"></i> Find Us</div>
+  <h2 class="s-title fade d1">Visit <span class="c-gold">FosterKids</span>, Bhirr</h2>
+  <div class="loc-grid">
+    <div>
+      <div class="loc-cards">
+        <div class="loc-card fade d1"><div class="loc-ico lic1"><i class="fa-solid fa-location-dot"></i></div><div><div class="loc-lbl">Address</div><div class="loc-val" id="locAddress"></div></div></div>
+        <div class="loc-card fade d2"><div class="loc-ico lic2"><i class="fa-solid fa-phone"></i></div><div><div class="loc-lbl">Phone & WhatsApp</div><div class="loc-val" id="locPhone"></div></div></div>
+        <div class="loc-card fade d3"><div class="loc-ico lic3"><i class="fa-solid fa-envelope"></i></div><div><div class="loc-lbl">Email</div><div class="loc-val" id="locEmail"></div></div></div>
+        <div class="loc-card fade d4"><div class="loc-ico lic4"><i class="fa-brands fa-instagram"></i></div><div><div class="loc-lbl">Instagram</div><div class="loc-val" id="locIg"></div></div></div>
+      </div>
+      <div class="hours-box fade d3">
+        <div class="hours-ttl">School Hours</div>
+        <div class="hrow"><span class="hday">Monday – Friday</span><span class="htime" id="hoursWeekday"></span></div>
+        <div class="hrow"><span class="hday">Saturday</span><span class="htime" id="hoursSat"></span></div>
+        <div class="hrow"><span class="hday">Sunday</span><span class="htime" id="hoursSun"></span></div>
+        <div class="hrow"><span class="hday">Office Hours</span><span class="htime" id="hoursOffice"></span></div>
+      </div>
+    </div>
+    <div class="fade d2">
+      <div class="mapwrap">
+        <iframe src="https://maps.google.com/maps?q=Bhirr+VPO+Buhana+Rajasthan+333515&output=embed&z=15" allowfullscreen="" loading="lazy" title="Location"></iframe>
+      </div>
+      <div class="map-btns">
+        <a href="https://www.google.com/maps/search/Foster+Play+School+Bhirr+Buhana+Rajasthan" target="_blank" class="mbwa" style="background:var(--purple);">
+          <i class="fa-solid fa-map"></i> Open in Maps
+        </a>
+        <a id="locWaBtn" href="#" target="_blank" class="mbig"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section id="testimonials" class="sec">
+  <div class="test-hd">
+    <div class="s-label sl-purple fade" style="justify-content:center;margin:0 auto 14px;"><i class="fa-solid fa-heart"></i> Parent Reviews</div>
+    <h2 class="s-title fade d1">What <span class="c-purple">Parents</span> Say About Us</h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card fade d1">
+      <div class="tcard-q">"</div>
+      <div class="test-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+      <p class="test-txt">"My daughter used to cry before school — now she wakes up excited every morning! FosterKids has transformed her confidence completely. The teachers are incredibly patient and caring."</p>
+      <div class="test-auth">
+        <div class="test-av"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80" alt="Parent"/></div>
+        <div><div class="test-name">Priya Sharma</div><div class="test-role">Parent · Bhirr</div></div>
+      </div>
+    </div>
+    <div class="test-card fade d2">
+      <div class="tcard-q">"</div>
+      <div class="test-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+      <p class="test-txt">"Best play school in Bhirr — no question. The founder personally knows every child by name. My son has developed so much in just a few months here!"</p>
+      <div class="test-auth">
+        <div class="test-av"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt="Parent"/></div>
+        <div><div class="test-name">Rajesh Gupta</div><div class="test-role">Parent · Buhana</div></div>
+      </div>
+    </div>
+    <div class="test-card fade d3">
+      <div class="tcard-q">"</div>
+      <div class="test-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+      <p class="test-txt">"We receive WhatsApp photos of our child every day — that kind of transparency is rare. The play activities and learning approach keep him happy and growing. FosterKids is wonderful!"</p>
+      <div class="test-auth">
+        <div class="test-av"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80" alt="Parent"/></div>
+        <div><div class="test-name">Anita Verma</div><div class="test-role">Parent · Bhirr</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div style="margin-bottom:12px;">
+        <svg width="120" height="44" viewBox="0 0 200 60" fill="none">
+          <rect width="50" height="50" rx="12" fill="white" opacity="0.1" y="5"/>
+          <circle cx="19" cy="18" r="6" fill="#E91E8C"/>
+          <path d="M10 40 Q19 28 28 40" fill="#E91E8C"/>
+          <circle cx="33" cy="15" r="6" fill="#9B59E8"/>
+          <path d="M24 42 Q33 26 42 42" fill="#9B59E8"/>
+          <text x="52" y="28" font-family="Fredoka One,cursive" font-size="20" fill="#fff" font-weight="700">Foster<tspan fill="#F5A623">Kids</tspan></text>
+          <text x="52" y="46" font-family="Nunito,sans-serif" font-size="10" fill="rgba(255,255,255,0.4)" letter-spacing="2">PLAY SCHOOL · BHIRR</text>
+        </svg>
+      </div>
+      <p class="ft-about">Foster Play School, VPO Bhirr, Near Bank of Baroda, Tehsil Buhana, Rajasthan — where every child's journey begins with joy, love and curiosity.</p>
+      <div class="ft-soc">
+        <a href="https://www.instagram.com/fosterkidsbuhana?igsh=MXd5NngyOW13bnI5Ng==" target="_blank" class="ftsl"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/919729313222" target="_blank" class="ftsl"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://facebook.com" target="_blank" class="ftsl"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://youtube.com" target="_blank" class="ftsl"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h4>Programs</h4>
+      <a href="#programs">Play Group</a>
+      <a href="#programs">Pre-Nursery</a>
+      <a href="#programs">Nursery</a>
+      <a href="javascript:void(0)" class="ft-admin-link" onclick="openAdminLogin()">admin</a>
+    </div>
+    <div class="ft-col">
+      <h4>Quick Links</h4>
+      <a href="#about">About School</a>
+      <a href="#founder">Founder's Message</a>
+      <a href="#admissions">Admissions</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#location">Location</a>
+    </div>
+    <div class="ft-col">
+      <h4>Contact</h4>
+      <a href="tel:+919729313222">+91 9729313222</a>
+      <a href="https://wa.me/919729313222" target="_blank">WhatsApp</a>
+      <a href="https://www.instagram.com/fosterkidsbuhana?igsh=MXd5NngyOW13bnI5Ng==" target="_blank">@fosterkidsbuhana</a>
+      <a href="mailto:fosterkidsbhirr@gmail.com">fosterkidsbhirr@gmail.com</a>
+      <p>VPO Bhirr, Tehsil Buhana,<br/>Rajasthan - 333515</p>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2026 Foster Play School, Bhirr. All Rights Reserved.</span>
+    <span>Building brighter futures in Bhirr, Buhana</span>
+  </div>
+</footer>
+
+<!-- ── LOADER ── -->
+<div id="loader">
+  <div class="ld-logo-wrap">
+    <svg width="160" height="56" viewBox="0 0 260 70" fill="none">
+      <rect width="56" height="56" rx="14" fill="white" opacity="0.15" y="7"/>
+      <circle cx="21" cy="20" r="7" fill="#FF69B4"/>
+      <path d="M11 48 Q21 33 31 48" fill="#FF69B4"/>
+      <circle cx="37" cy="17" r="7" fill="#C8A2FF"/>
+      <path d="M27 50 Q37 30 47 50" fill="#C8A2FF"/>
+      <text x="62" y="36" font-family="Arial" font-size="26" fill="white" font-weight="900">Foster<tspan fill="#FFD700">Kids</tspan></text>
+      <text x="62" y="54" font-family="Arial" font-size="11" fill="rgba(255,255,255,0.5)" letter-spacing="3">PLAY SCHOOL</text>
+    </svg>
+    <div style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.5);">Bhirr, Buhana — Rajasthan</div>
+  </div>
+  <div class="ld-bar-wrap"><div class="ld-bar-fill"></div></div>
+  <div class="ld-tagline">Where Every Child's Future Begins</div>
+</div>
+
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox">
+  <span class="lb-close" onclick="closeLB()"><i class="fa-solid fa-xmark"></i></span>
+  <span class="lb-prev" onclick="lbNav(-1)"><i class="fa-solid fa-chevron-left"></i></span>
+  <img id="lbImg" src="" alt=""/>
+  <span class="lb-next" onclick="lbNav(1)"><i class="fa-solid fa-chevron-right"></i></span>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
