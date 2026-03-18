@@ -22,7 +22,7 @@ const DEFAULTS = {
   founderMsg: '"At FosterKids, we believe that the foundation built in a child\'s early years shapes everything that follows. Our mission is not just to educate — it is to inspire, to nurture and to celebrate every child\'s unique gift.\n\nWe started this school with one simple vision: to give the children of Bhirr and Buhana a world-class early education right in their own community.\n\nWe warmly invite you to visit our campus and experience the FosterKids difference for yourself. Your child\'s bright future begins here."',
   admBannerTitle: 'Admissions Open — Academic Year 2026–27',
   admBannerSub: 'Play Group · Pre-Nursery · Nursery  |  Limited Seats — Enroll Today!',
-  admText: 'Admissions are now open for 2025–26. Our process is simple, friendly and parent-oriented.',
+  admText: 'Admissions are now open for 2026–27. Our process is simple, friendly and parent-oriented.',
   locAddress: 'Foster Play School,\nVPO - Bhirr, Main Pacheri to Buhana Road,\nNear Bank of Baroda,\nTehsil Buhana, Rajasthan - 333515',
   locPhone: '+91 9729313222',
   locEmail: 'fosterkidsbhirr@gmail.com',
