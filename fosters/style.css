@@ -1,915 +1,506 @@
-/* ═══ GLOBAL SKETCH BACKGROUND ═══ */
-body{
-  background-color:#f3eeff;
-  background-image: url('images/images/hero.jpeg');
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-}
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  /* White translucent overlay — image thodi si dikh ti hai */
-  background:rgba(243,238,255,0.88);
-}
-body::after{
-  content:'';
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  background-image:
-    radial-gradient(circle, rgba(92,45,145,0.07) 2px, transparent 2px),
-    radial-gradient(circle, rgba(233,30,140,0.06) 1.5px, transparent 1.5px),
-    radial-gradient(circle, rgba(245,166,35,0.06) 1px, transparent 1px);
-  background-size: 80px 80px, 60px 60px, 100px 100px;
-  background-position: 0 0, 30px 30px, 50px 10px;
-}
-#loader,#nav,#drawer,.wa-float,.mob-bar,section,footer{position:relative;z-index:1;}
- 
-/* ═══ SCROLL PROGRESS BAR ═══ */
-#scroll-progress{
-  position:fixed;
-  top:0;left:0;
-  height:3px;
-  width:0%;
-  background:linear-gradient(90deg,var(--purple),var(--pink),var(--gold));
-  z-index:9999;
-  transition:width .1s linear;
-  border-radius:0 2px 2px 0;
-}
- 
-/* ═══ VARIABLES ═══ */
-:root{
-  --purple:#5C2D91;--purple2:#7B3FB5;
-  --pink:#E91E8C;--gold:#F5A623;--gold2:#FFB800;
-  --green:#25D366;--ink:#1A0A2E;--body:#3D2B5C;
-  --gray:#7B6B9A;--cream:#FDF8FF;--soft:#F5EEFF;
-  --mist:#EDE0FF;--border:rgba(92,45,145,.12);
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Nunito',sans-serif;color:var(--ink);overflow-x:hidden;}
-img{max-width:100%;display:block;}
-a{text-decoration:none;}
-::-webkit-scrollbar{width:5px;}
-::-webkit-scrollbar-thumb{background:linear-gradient(var(--purple),var(--pink));border-radius:3px;}
- 
-/* ═══ LOADER ═══ */
-#loader{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#5C2D91,#9B59B6,#E91E8C);display:flex;align-items:center;justify-content:center;transition:opacity .7s,visibility .7s;}
-#loader.gone{opacity:0;visibility:hidden;pointer-events:none;}
-.ld-inner{display:flex;flex-direction:column;align-items:center;gap:18px;}
-.ld-bar{width:220px;height:4px;background:rgba(255,255,255,.2);border-radius:4px;overflow:hidden;}
-.ld-fill{height:100%;background:linear-gradient(90deg,var(--gold),#fff);animation:ldBar 1.5s ease forwards;width:0;}
-.ld-tag{font-size:13px;letter-spacing:2px;color:rgba(255,255,255,.65);text-align:center;}
-@keyframes ldBar{to{width:100%}}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.ld-logo-text{display:flex;flex-direction:row;align-items:baseline;flex-wrap:wrap;justify-content:center;gap:0;}
-.ld-foster{font-family:'Fredoka One',cursive;font-size:42px;color:var(--purple2);line-height:1;}
-.ld-kids{font-family:'Fredoka One',cursive;font-size:42px;color:var(--pink);line-height:1;margin-left:6px;}
-.ld-school-txt{width:100%;text-align:center;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:4px;}
-.ld-logo-img{height:80px;object-fit:contain;}
- 
-/* ═══ FOOTER LOGO ═══ */
-.ft-logo-text{display:flex;flex-wrap:wrap;align-items:baseline;gap:0;margin-bottom:12px;}
-.ftl-foster{font-family:'Fredoka One',cursive;font-size:28px;color:#fff;line-height:1;}
-/* ✅ Footer: Foster=purple2, Kids=pink — logo se match */
-.ftl-foster{font-family:'Fredoka One',cursive;font-size:28px;color:var(--purple2) !important;line-height:1;}
-.ftl-kids{font-family:'Fredoka One',cursive;font-size:28px;color:var(--pink) !important;line-height:1;}
-.ftl-sub{display:block;width:100%;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:3px;}
- 
-/* ═══ WA FLOAT ═══ */
-.wa-float{position:fixed;bottom:26px;right:24px;z-index:400;width:58px;height:58px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(37,211,102,.45);transition:transform .3s;}
-.wa-float:hover{transform:scale(1.12);}
-.wa-float i{color:#fff;font-size:26px;position:relative;z-index:1;}
-.wa-pulse{position:absolute;width:100%;height:100%;border-radius:50%;border:2.5px solid var(--green);animation:waPulse 2s ease-out infinite;}
-@keyframes waPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.85);opacity:0}}
- 
-/* ═══ MOBILE BAR ═══ */
-.mob-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:450;}
-.mob-bar a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:800;letter-spacing:.5px;padding:10px 4px;text-decoration:none;}
-.mob-bar a span{font-size:10px;}
-.mb-call{background:var(--purple);color:#fff;}
-.mb-wa{background:var(--green);color:#fff;}
-.mb-adm{background:linear-gradient(135deg,var(--pink),var(--gold));color:#fff;}
-.mob-bar i{font-size:18px;}
- 
-/* ═══ DRAWER ═══ */
-#drawer{position:fixed;inset:0;background:linear-gradient(160deg,var(--purple),#2A0848);z-index:600;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transform:translateX(100%);transition:transform .5s cubic-bezier(.4,0,.2,1);}
-#drawer.open{transform:translateX(0);}
-.dclose{position:absolute;top:20px;right:22px;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:8px;}
-.d-brand{font-family:'Fredoka One',cursive;font-size:30px;color:#fff;margin-bottom:12px;}
-.d-brand span{color:var(--gold);}
-.dlink{font-family:'Fredoka One',cursive;font-size:24px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:10px;padding:5px 0;transition:color .25s;}
-.dlink i{font-size:18px;opacity:.7;}
-.dlink:hover{color:var(--gold);}
-.d-enq{margin-top:16px;background:linear-gradient(135deg,var(--pink),var(--gold));color:#fff;font-family:'Fredoka One',cursive;font-size:18px;padding:13px 32px;border-radius:50px;}
- 
-/* ═══ NAV ═══ */
-#nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:14px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
-#nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:10px 52px;box-shadow:0 4px 28px rgba(92,45,145,.1);border-bottom:1px solid var(--border);}
-.nav-logo-img{height:46px;object-fit:contain;}
-.ft-logo-img{height:50px;object-fit:contain;margin-bottom:14px;display:block;}
-.nav-logo{display:flex;align-items:center;gap:10px;}
-.nl-name{font-family:'Fredoka One',cursive;font-size:21px;line-height:1;}
-/* ═══ NAV LOGO COLORS ═══ */
-#nav .nl-name .fk-p{color:var(--purple2);transition:color .3s;}
-#nav .nl-name .fk-k{color:var(--pink);transition:color .3s;}
-#nav.solid .nl-name .fk-p{color:var(--purple2) !important;}
-#nav.solid .nl-name .fk-k{color:var(--pink) !important;}
-.nl-sub{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);transition:color .3s;}
-#nav.solid .nl-sub{color:var(--gray);}
-.nav-links{display:flex;gap:22px;list-style:none;}
-.nav-links a{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.8);position:relative;padding-bottom:2px;transition:color .3s;}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);border-radius:2px;transition:width .3s;}
-.nav-links a:hover::after{width:100%;}
-#nav.solid .nav-links a{color:var(--body);}
-#nav.solid .nav-links a:hover{color:var(--purple);}
-.nav-right{display:flex;align-items:center;gap:10px;}
-.nav-ig{width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.8);font-size:14px;transition:all .3s;}
-.nav-ig:hover{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);border-color:transparent;color:#fff;}
-#nav.solid .nav-ig{border-color:var(--border);color:var(--body);}
-.nav-admit{font-family:'Fredoka One',cursive;font-size:14px;background:linear-gradient(135deg,var(--pink),var(--gold));color:#fff;padding:9px 20px;border-radius:50px;transition:transform .3s;box-shadow:0 4px 16px rgba(233,30,140,.3);}
-.nav-admit:hover{transform:translateY(-2px);}
-.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
-.ham span{width:22px;height:2.5px;background:#fff;display:block;border-radius:2px;transition:.3s;}
-#nav.solid .ham span{background:var(--ink);}
- 
-/* ═══ HERO ═══ */
-#hero{min-height:100svh;position:relative;display:flex;align-items:center;overflow:hidden;padding-top:90px;}
-.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(92,45,145,.92) 0%,rgba(92,45,145,.7) 55%,rgba(92,45,145,.18) 100%);}
-.hero-wave{position:absolute;bottom:0;left:0;right:0;}
-.hero-inner{position:relative;z-index:2;padding:48px 52px;width:100%;}
-.hero-two-col{display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center;}
-.hero-text{max-width:100%;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,.18);border:1.5px solid rgba(245,166,35,.4);color:var(--gold2);padding:7px 16px;border-radius:50px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:22px;animation:fadeDown .8s ease both;}
-.hero-h1{font-family:'Fredoka One',cursive;font-size:clamp(32px,4.5vw,60px);color:#fff;line-height:1.12;margin-bottom:18px;text-shadow:0 4px 20px rgba(0,0,0,.2);animation:fadeDown .8s .15s ease both;}
-.c-gold-txt{color:var(--gold);}
-.hero-p{font-size:15.5px;color:rgba(255,255,255,.75);line-height:1.9;max-width:460px;margin-bottom:32px;animation:fadeDown .8s .25s ease both;}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeDown .8s .35s ease both;}
-.btn-primary{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--gold),#FF8C00);color:var(--ink);font-family:'Fredoka One',cursive;font-size:15px;padding:13px 26px;border-radius:50px;box-shadow:0 8px 24px rgba(245,166,35,.4);transition:transform .3s;}
-.btn-primary:hover{transform:translateY(-3px);}
-.btn-wa-hero{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#fff;font-family:'Fredoka One',cursive;font-size:15px;padding:13px 26px;border-radius:50px;box-shadow:0 8px 24px rgba(37,211,102,.3);transition:transform .3s;}
-.btn-wa-hero:hover{transform:translateY(-3px);}
-.hero-imgs{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:12px;animation:fadeDown .8s .45s ease both;}
-.himg-main{grid-column:span 2;border-radius:20px;overflow:hidden;height:215px;position:relative;box-shadow:0 12px 32px rgba(0,0,0,.25);}
-.himg-sm{border-radius:16px;overflow:hidden;height:145px;position:relative;box-shadow:0 8px 20px rgba(0,0,0,.2);}
-.himg-main img,.himg-sm img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
-.himg-main:hover img,.himg-sm:hover img{transform:scale(1.06);}
-.himg-lbl{position:absolute;bottom:9px;left:10px;background:rgba(92,45,145,.88);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:50px;backdrop-filter:blur(4px);}
-.bubbles{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
-.bubble{position:absolute;font-size:26px;animation:floatUp 7s ease-in-out infinite;opacity:.65;}
-.b1{left:3%;animation-delay:0s;animation-duration:7s;bottom:0;}
-.b2{left:12%;animation-delay:1.2s;animation-duration:9s;bottom:0;}
-.b3{right:6%;animation-delay:2s;animation-duration:8s;bottom:0;}
-.b4{right:18%;animation-delay:3s;animation-duration:6.5s;bottom:0;}
-.b5{left:38%;animation-delay:1.5s;animation-duration:10s;bottom:0;}
-.b6{right:33%;animation-delay:0.7s;animation-duration:7.5s;bottom:0;}
-@keyframes floatUp{0%{transform:translateY(0) rotate(0deg);opacity:0}10%{opacity:.65}90%{opacity:.4}100%{transform:translateY(-110vh) rotate(360deg);opacity:0}}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
- 
-/* ═══ SECTIONS ═══ */
-.sec{padding:96px 52px;}
-.bg-white{background:#fff;}
-.bg-soft{background:var(--soft);}
-.bg-purple{background:linear-gradient(135deg,var(--purple),#3A1060);position:relative;overflow:hidden;}
-.bg-purple::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px;}
-.bg-cream{background:linear-gradient(135deg,#FFF8E0,#FFF0F8);}
-.bg-dark{background:linear-gradient(135deg,#1A0A2E,#3A1060);position:relative;overflow:hidden;}
-.bg-dark::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;}
- 
-/* ═══ SECTION REVEAL — ZOOM EFFECT ═══ */
-.sec-reveal{
-  opacity:0;
-  transform:scale(0.97) translateY(30px);
-  transition:opacity .75s ease, transform .75s ease;
-}
-.sec-reveal.revealed{
-  opacity:1;
-  transform:scale(1) translateY(0);
-}
-/* Override for hero — always visible */
-#hero{opacity:1 !important;transform:none !important;}
- 
-/* ═══ FADE + ZOOM IN ═══ */
-.fade{opacity:0;transform:translateY(22px) scale(0.97);transition:opacity .8s ease,transform .8s ease;}
-.fade.in{opacity:1;transform:translateY(0) scale(1);}
- 
-/* Images zoom pop */
-.zoom-img{opacity:0;transform:scale(0.88);transition:opacity .9s ease,transform .9s cubic-bezier(.34,1.56,.64,1);}
-.zoom-img.in{opacity:1;transform:scale(1);}
- 
-.sec-lbl{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:7px 15px;border-radius:50px;margin-bottom:14px;}
-.purple-lbl{color:var(--purple);background:var(--soft);border:1.5px solid var(--border);}
-.pink-lbl{color:var(--pink);background:#FFF0F8;border:1.5px solid rgba(233,30,140,.15);}
-.gold-lbl{color:#8B6000;background:#FFF8E0;border:1.5px solid rgba(245,166,35,.25);}
-.green-lbl{color:#006B3C;background:#E8FFF5;border:1.5px solid rgba(37,211,102,.2);}
-.sec-title{font-family:'Fredoka One',cursive;font-size:clamp(26px,4vw,46px);line-height:1.12;color:var(--ink);margin-bottom:8px;}
-.sec-title.light{color:#fff;}
-.c-purple{color:var(--purple);}
-.c-pink{color:var(--pink);}
-.c-gold{color:var(--gold);}
-.sec-sub{font-size:15.5px;color:var(--gray);line-height:1.85;max-width:560px;}
-.sec-sub-r{font-size:15.5px;color:var(--gray);line-height:1.85;max-width:440px;align-self:flex-end;}
- 
-/* ═══ ABOUT ═══ */
-.about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:68px;align-items:center;margin-top:52px;}
-.about-imgs{position:relative;height:500px;}
-.ai-main{position:absolute;top:0;left:0;width:73%;height:400px;border-radius:22px;overflow:hidden;box-shadow:0 20px 56px rgba(92,45,145,.18);}
-.ai-main img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;}
-.ai-main:hover img{transform:scale(1.06);}
-.ai-sub{position:absolute;bottom:0;right:0;width:52%;height:230px;border-radius:18px;overflow:hidden;border:4px solid #fff;box-shadow:0 14px 40px rgba(92,45,145,.15);}
-.ai-sub img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;}
-.ai-sub:hover img{transform:scale(1.06);}
-.ai-badge{position:absolute;top:28px;right:-8px;background:linear-gradient(135deg,var(--purple),var(--purple2));border-radius:16px;padding:16px 18px;text-align:center;box-shadow:0 10px 28px rgba(92,45,145,.3);z-index:2;}
-.aib-n{font-family:'Fredoka One',cursive;font-size:36px;color:var(--gold);line-height:1;}
-.aib-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:3px;}
-.abt-p{font-size:15.5px;color:var(--body);line-height:1.95;margin-bottom:12px;}
-.pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0;}
-.pill{font-size:12.5px;font-weight:700;padding:7px 14px;border-radius:50px;}
-.p1{background:var(--soft);color:var(--purple);}
-.p2{background:#FFF0F8;color:var(--pink);}
-.p3{background:#FFF8E0;color:#8B6000;}
-.p4{background:#E8F0FF;color:#1558A8;}
-.p5{background:#E8FFF5;color:#006B3C;}
-.af-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;}
-.af-card{display:flex;align-items:flex-start;gap:11px;background:var(--soft);border:1.5px solid var(--border);border-radius:13px;padding:13px 12px;transition:all .3s;}
-.af-card:hover{transform:translateY(-3px) scale(1.02);border-color:rgba(92,45,145,.25);box-shadow:0 8px 24px rgba(92,45,145,.1);}
-.af-ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;}
-.af-t{font-size:12.5px;font-weight:800;color:var(--ink);margin-bottom:2px;}
-.af-s{font-size:11px;color:var(--gray);line-height:1.5;}
- 
-/* ═══ TESTIMONIALS ═══ */
-.test-outer{position:relative;display:flex;align-items:center;gap:16px;margin-top:40px;}
-.test-viewport{overflow:hidden;flex:1;}
-.test-track{
-  display:flex;
-  transition:transform .55s cubic-bezier(.4,0,.2,1);
-}
-/* Desktop: each card = 33.333% width → 3 visible at once */
-.test-card-new{
-  min-width:calc(33.333% - 11px);
-  width:calc(33.333% - 11px);
-  background:#fff;
-  border:2px solid var(--border);
-  border-radius:16px;
-  padding:18px 16px;
-  position:relative;
-  height:auto;
-  flex-shrink:0;
-  margin-right:16px;
-  box-sizing:border-box;
-  transition:transform .3s, box-shadow .3s;
-}
-.test-card-new:last-child{margin-right:0;}
-.test-card-new:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(92,45,145,.1);border-color:rgba(92,45,145,.2);}
-.test-card-new .test-q{position:absolute;top:8px;right:12px;font-family:'Fredoka One',cursive;font-size:60px;color:rgba(92,45,145,.05);line-height:.5;pointer-events:none;}
-.test-card-new .test-stars{font-size:12px;margin-bottom:8px;}
-.test-card-new .test-txt{font-size:12.5px;color:var(--body);line-height:1.6;margin-bottom:12px;font-style:italic;}
-.test-card-new .test-auth{display:flex;align-items:center;gap:8px;}
-.test-card-new .test-av{width:38px;height:38px;min-width:38px;border-radius:50%;overflow:hidden;border:2px solid var(--mist);flex-shrink:0;}
-.test-card-new .test-av img{width:38px;height:38px;object-fit:cover;display:block;}
-.test-card-new .test-name{font-size:12px;font-weight:800;color:var(--ink);}
-.test-card-new .test-role{font-size:10px;color:var(--purple);font-weight:600;margin-top:1px;}
-.test-nav-btn{width:48px;height:48px;border-radius:50%;background:#fff;border:2px solid var(--border);color:var(--purple);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0;box-shadow:0 4px 16px rgba(92,45,145,.1);}
-.test-nav-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple);}
-.test-dots{display:flex;justify-content:center;gap:10px;margin-top:20px;}
-.test-dot{width:10px;height:10px;border-radius:50%;background:rgba(92,45,145,.2);cursor:pointer;transition:all .3s;}
-.test-dot.active{background:var(--purple);width:28px;border-radius:5px;}
-.prog-card{
-  background:rgba(255,255,255,.1);
-  border:1.5px solid rgba(255,255,255,.15);
-  border-radius:24px;
-  overflow:hidden;
-  transition:transform .35s ease, box-shadow .35s ease, background .35s ease;
-  position:relative;
-  transform:translateY(0) scale(1);
-  will-change:transform;
-}
-.prog-card:hover{
-  background:rgba(255,255,255,.18);
-  transform:translateY(-10px) scale(1.04) !important;
-  box-shadow:0 32px 64px rgba(0,0,0,.35);
-}
- 
-/* ═══ NEP SIMPLE SECTION ═══ */
-#nep{
-  position:relative;
-  overflow:hidden;
-}
-#nep::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background-image:url('images/images/hero.jpeg');
-  background-size:cover;
-  background-position:center;
-  filter:blur(8px) brightness(0.25);
-  transform:scale(1.08);
-  z-index:0;
-}
-#nep .nep-simple-wrap{position:relative;z-index:1;}
-.nep-simple-wrap{
-  max-width:860px;
-  margin:0 auto;
-  background:rgba(0,0,0,0.35);
-  border:1.5px solid rgba(255,255,255,0.15);
-  border-radius:24px;
-  padding:48px 52px;
-  backdrop-filter:blur(4px);
-}
-.nep-simple-tag{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
-  padding:7px 15px;border-radius:50px;margin-bottom:22px;
-  color:#fff;background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);
-}
-.nep-simple-title{
-  font-size:clamp(18px,2.2vw,26px);
-  font-weight:900;
-  color:#fff;
-  line-height:1.4;
-  margin-bottom:24px;
-  padding-bottom:18px;
-  border-bottom:2px solid rgba(255,255,255,0.25);
-  text-shadow:0 2px 8px rgba(0,0,0,0.4);
-}
-.nep-simple-p{
-  font-size:15.5px;
-  color:#fff;
-  font-weight:700;
-  line-height:2;
-  margin-bottom:20px;
-  text-shadow:0 1px 4px rgba(0,0,0,0.5);
-}
-.nep-simple-p:last-child{margin-bottom:0;}
-/* Highlighted keywords inside NEP paragraphs */
-.nep-simple-p strong,.nep-simple-p b{
-  color:var(--gold);
-  font-weight:900;
-  background:rgba(245,166,35,0.15);
-  padding:1px 6px;
-  border-radius:4px;
-}
- 
-/* ═══ TESTIMONIALS — 3 per slide ═══ */
-.test-outer{
-  position:relative;
-  display:flex;align-items:center;gap:16px;
-  margin-top:40px;
-}
-.test-viewport{
-  overflow:hidden;
-  flex:1;
-}
-.test-track{
-  display:flex;
-  transition:transform .55s cubic-bezier(.4,0,.2,1);
-}
-.test-slide{
-  min-width:100%;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-  box-sizing:border-box;
-  align-items:start;
-}
-.test-card-new{
-  background:#fff;
-  border:2px solid var(--border);
-  border-radius:20px;
-  padding:26px 22px;
-  position:relative;
-  transition:transform .3s ease, box-shadow .3s ease;
-  will-change:transform;
-  height:auto;
-  display:flex;
-  flex-direction:column;
-}
-.test-card-new:hover{
-  transform:translateY(-6px) scale(1.02);
-  box-shadow:0 18px 44px rgba(92,45,145,.12);
-  border-color:rgba(92,45,145,.25);
-}
-/* Fix image sizes inside review cards */
-.test-card-new .test-q{position:absolute;top:12px;right:20px;font-family:'Fredoka One',cursive;font-size:84px;color:rgba(92,45,145,.05);line-height:.5;pointer-events:none;}
-.test-card-new .test-stars{font-size:14px;margin-bottom:10px;}
-.test-card-new .test-txt{font-size:13.5px;color:var(--body);line-height:1.75;margin-bottom:16px;font-style:italic;}
-.test-card-new .test-auth{display:flex;align-items:center;gap:10px;}
-.test-card-new .test-av{width:44px;height:44px;min-width:44px;min-height:44px;max-width:44px;max-height:44px;border-radius:50%;overflow:hidden;border:2px solid var(--mist);flex-shrink:0;}
-.test-card-new .test-av img{width:44px;height:44px;object-fit:cover;display:block;}
-.test-card-new .test-name{font-size:13px;font-weight:800;color:var(--ink);}
-.test-card-new .test-role{font-size:11px;color:var(--purple);font-weight:600;margin-top:1px;}
-.test-nav-btn{
-  width:52px;height:52px;border-radius:50%;
-  background:#fff;border:2px solid var(--border);
-  color:var(--purple);font-size:18px;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:all .3s;flex-shrink:0;
-  box-shadow:0 4px 16px rgba(92,45,145,.1);
-}
-.test-nav-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple);transform:scale(1.08);}
-.test-dots{
-  display:flex;justify-content:center;gap:10px;margin-top:20px;
-}
-.test-dot{
-  width:10px;height:10px;border-radius:50%;
-  background:rgba(92,45,145,.2);cursor:pointer;transition:all .3s;
-}
-.test-dot.active{background:var(--purple);width:28px;border-radius:5px;}
-/* ® symbol — small superscript above K */
-.k-reg-wrap{position:relative;display:inline-block;}
-.reg-above{
-  position:absolute;
-  top:-0.6em;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:0.35em;
-  font-family:'Nunito',sans-serif;
-  font-weight:900;
-  color:#000;
-  line-height:1;
-}
- 
-.prog-img{height:160px;overflow:hidden;position:relative;}
-.prog-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
-.prog-card:hover .prog-img img{transform:scale(1.08);}
-.prog-body{padding:24px 22px;}
-.prog-name{font-family:'Fredoka One',cursive;font-size:24px;color:#fff;margin-bottom:14px;}
-/* ✅ Bullet points for program content */
-.prog-points{
-  list-style:none;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  margin-bottom:14px;
-}
-.prog-points li{
-  display:flex;
-  align-items:flex-start;
-  gap:8px;
-  font-size:13.5px;
-  color:rgba(255,255,255,.72);
-  line-height:1.5;
-}
-.prog-points li::before{
-  content:'✦';
-  color:var(--gold);
-  font-size:10px;
-  flex-shrink:0;
-  margin-top:3px;
-}
-.prog-age{display:inline-flex;align-items:center;gap:5px;background:rgba(245,166,35,.2);border:1px solid rgba(245,166,35,.35);color:var(--gold2);font-size:11px;font-weight:700;padding:5px 13px;border-radius:50px;}
- 
-/* ═══ NEP 2020 SECTION ═══ */
-.nep-grid{
-  display:grid;
-  grid-template-columns:1fr 1.4fr;
-  gap:60px;
-  align-items:center;
-  margin-top:44px;
-}
-.nep-left{display:flex;flex-direction:column;align-items:center;gap:24px;}
-.nep-badge-big{
-  background:linear-gradient(135deg,var(--purple),var(--purple2));
-  border-radius:28px;
-  padding:36px 32px;
-  text-align:center;
-  box-shadow:0 20px 60px rgba(92,45,145,.25);
-  width:100%;
-  position:relative;
-  overflow:hidden;
-}
-.nep-badge-big::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.1) 0%,transparent 60%);
-}
-.nep-badge-icon{
-  width:72px;height:72px;
-  background:rgba(255,255,255,.15);
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 14px;
-  font-size:30px;
-  color:var(--gold);
-}
-.nep-badge-txt{
-  font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
-  color:rgba(255,255,255,.6);margin-bottom:4px;
-}
-.nep-badge-year{
-  font-family:'Fredoka One',cursive;
-  font-size:64px;color:var(--gold);line-height:1;
-  text-shadow:0 4px 20px rgba(245,166,35,.4);
-}
-.nep-badge-sub{
-  font-size:13px;font-weight:700;color:rgba(255,255,255,.75);
-  margin-top:6px;
-  background:rgba(255,255,255,.1);
-  padding:6px 16px;border-radius:50px;
-  display:inline-block;
-}
-.nep-pillars{
-  display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;width:100%;
-}
-.nep-pillar{
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-  background:#fff;border:2px solid var(--border);border-radius:14px;
-  padding:12px 8px;text-align:center;
-  transition:all .3s;
-}
-.nep-pillar:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 10px 28px rgba(92,45,145,.14);}
-.nep-pillar i{font-size:18px;}
-.nep-pillar span{font-size:9.5px;font-weight:800;color:var(--ink);line-height:1.3;}
-.np1 i{color:var(--pink);}
-.np2 i{color:var(--purple);}
-.np3 i{color:#0891B2;}
-.np4 i{color:#E91E8C;}
-.np5 i{color:var(--gold);}
-.np6 i{color:#22C55E;}
- 
-.nep-h3{
-  font-family:'Fredoka One',cursive;
-  font-size:clamp(19px,2.2vw,26px);
-  color:var(--ink);line-height:1.3;
-  margin-bottom:24px;
-}
-.nep-para{
-  display:flex;align-items:flex-start;gap:13px;
-  margin-bottom:18px;
-  padding:18px 16px;
-  background:var(--soft);
-  border:1.5px solid var(--border);
-  border-radius:14px;
-  transition:all .3s;
-}
-.nep-para:hover{border-color:rgba(92,45,145,.25);transform:translateX(4px);}
-.nep-para-icon{
-  width:30px;height:30px;
-  background:linear-gradient(135deg,var(--purple),var(--pink));
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-  margin-top:2px;
-}
-.nep-para-icon i{color:#fff;font-size:13px;}
-.nep-para p{font-size:14.5px;color:var(--body);line-height:1.85;}
-.nep-highlight{
-  display:flex;align-items:center;gap:13px;
-  background:linear-gradient(135deg,var(--purple),var(--pink));
-  border-radius:14px;padding:16px 18px;margin-top:6px;
-  box-shadow:0 8px 24px rgba(92,45,145,.24);
-}
-.nep-highlight i{color:var(--gold);font-size:22px;flex-shrink:0;}
-.nep-highlight span{font-size:13.5px;color:#fff;line-height:1.6;}
- 
-/* ═══ RECOGNITION ═══ */
-.recog-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:center;margin-top:44px;}
-.recog-left{position:relative;}
-.cert-img-wrap{border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.15);border:4px solid #fff;}
-.cert-img{width:100%;height:auto;display:block;border-radius:12px;}
-.cert-ribbon{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold),#FF8C00);color:var(--ink);font-family:'Fredoka One',cursive;font-size:13px;padding:8px 18px;border-radius:50px;margin-top:14px;box-shadow:0 4px 14px rgba(245,166,35,.35);}
-.recog-top-badge{display:inline-flex;align-items:center;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:7px 16px;border-radius:50px;margin-bottom:16px;}
-.recog-h3{font-family:'Fredoka One',cursive;font-size:clamp(20px,2.5vw,30px);line-height:1.25;color:var(--ink);margin-bottom:14px;}
-.recog-desc{font-size:14.5px;color:var(--body);line-height:1.9;margin-bottom:4px;}
-.recog-points{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
-.rp{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--body);line-height:1.6;}
-.rp-ico{font-size:16px;flex-shrink:0;margin-top:1px;}
-.principal-card{display:flex;align-items:center;gap:14px;background:#fff;border:2px solid var(--border);border-radius:14px;padding:14px 18px;margin-top:24px;box-shadow:0 4px 16px rgba(92,45,145,.08);}
-.pc-av{width:48px;height:48px;background:linear-gradient(135deg,var(--purple),var(--pink));border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.pc-av i{color:#fff;font-size:20px;}
-.pc-lbl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:2px;}
-.pc-name{font-family:'Fredoka One',cursive;font-size:18px;color:var(--ink);}
-.pc-school{font-size:11.5px;color:var(--gray);margin-top:1px;}
- 
-/* ═══ FOUNDER ═══ */
-.person-row{display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:center;background:#fff;border-radius:24px;padding:36px 40px;box-shadow:0 8px 32px rgba(92,45,145,.08);border:2px solid var(--border);}
-.person-row-photo{display:flex;flex-direction:column;align-items:center;gap:14px;}
-.pr-photo-wrap{width:200px;height:200px;border-radius:50%;overflow:hidden;flex-shrink:0;}
-.pr-photo{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s;}
-.pr-photo-wrap:hover .pr-photo{transform:scale(1.06);}
-.founder-border{border:5px solid var(--purple);box-shadow:0 8px 28px rgba(92,45,145,.25);}
-.owner-border{border:5px solid var(--pink);box-shadow:0 8px 28px rgba(233,30,140,.2);}
-.pr-badge{font-size:12px;font-weight:800;padding:6px 16px;border-radius:50px;text-align:center;}
-.founder-clr{background:var(--soft);color:var(--purple);border:1.5px solid var(--border);}
-.owner-clr{background:#FFF0F8;color:var(--pink);border:1.5px solid rgba(233,30,140,.15);}
-.person-row-content{flex:1;}
-.prc-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
-.founder-tag{color:var(--purple);}
-.owner-tag{color:var(--pink);}
-.prc-name{font-family:'Fredoka One',cursive;font-size:28px;color:var(--ink);margin-bottom:4px;}
-.prc-role{font-size:13px;font-weight:700;color:var(--gray);margin-bottom:16px;}
-.prc-divider{height:2px;width:60px;background:linear-gradient(90deg,var(--purple),var(--pink));border-radius:2px;margin-bottom:16px;}
-.prc-msg{font-size:14.5px;color:var(--body);line-height:1.9;font-style:italic;margin-bottom:18px;}
-.prc-sign{font-family:'Fredoka One',cursive;font-size:22px;color:var(--purple);}
-.prc-sign-sub{font-size:11.5px;color:var(--gray);margin-top:3px;}
-.person-sep{height:2px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:32px 0;}
- 
-/* ═══ ADMISSIONS ═══ */
-.adm-banner{background:linear-gradient(135deg,var(--purple),var(--pink));border-radius:22px;padding:24px 30px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:48px;box-shadow:0 12px 40px rgba(92,45,145,.24);}
-.adm-b-title{font-family:'Fredoka One',cursive;font-size:24px;color:#fff;margin-bottom:5px;}
-.adm-b-sub{font-size:13px;color:rgba(255,255,255,.75);}
-.adm-wa-btn{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--purple);font-family:'Fredoka One',cursive;font-size:14px;padding:12px 24px;border-radius:50px;white-space:nowrap;transition:all .3s;box-shadow:0 4px 14px rgba(0,0,0,.12);}
-.adm-wa-btn:hover{background:var(--gold);color:var(--ink);}
-.adm-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:52px;align-items:start;margin-top:24px;}
-.adm-intro{font-size:15px;color:var(--body);line-height:1.85;margin-bottom:20px;}
-.adm-steps{display:flex;flex-direction:column;gap:12px;}
-.adm-step{display:flex;align-items:flex-start;gap:13px;background:var(--soft);border:1.5px solid var(--border);border-radius:14px;padding:15px 14px;transition:all .3s;}
-.adm-step:hover{border-color:rgba(92,45,145,.3);transform:translateX(4px);}
-.sn{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:18px;color:#fff;flex-shrink:0;}
-.s1{background:linear-gradient(135deg,var(--pink),#FF8C00);}
-.s2{background:linear-gradient(135deg,var(--purple),var(--purple2));}
-.s3{background:linear-gradient(135deg,#00C9A7,#0891B2);}
-.s4{background:linear-gradient(135deg,var(--gold),#FF8C00);}
-.st{font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:2px;}
-.ss{font-size:12px;color:var(--gray);line-height:1.5;}
-.adm-form{background:linear-gradient(150deg,var(--purple),#3A1060);border-radius:24px;padding:36px 32px;box-shadow:0 18px 52px rgba(92,45,145,.26);}
-.form-hd{font-family:'Fredoka One',cursive;font-size:24px;color:#fff;margin-bottom:4px;}
-.form-sub{font-size:12.5px;color:rgba(255,255,255,.5);margin-bottom:24px;}
-.fg{margin-bottom:16px;}
-.fg label{display:block;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6px;}
-.fg input,.fg select,.fg textarea{width:100%;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.14);border-radius:11px;color:#fff;padding:12px 14px;font-family:'Nunito',sans-serif;font-size:14.5px;font-weight:500;outline:none;transition:all .3s;}
-.fg input:focus,.fg select:focus,.fg textarea:focus{background:rgba(255,255,255,.16);border-color:rgba(245,166,35,.6);}
-.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.28);}
-.fg select{-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(255,255,255,0.4)' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-color:rgba(255,255,255,.1);}
-.fg select option{background:#3A1060;color:#fff;}
-.fg textarea{resize:none;height:72px;}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.btn-form-wa{width:100%;padding:14px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--gold),#FF8C00);color:var(--ink);font-family:'Fredoka One',cursive;font-size:16px;border-radius:50px;display:flex;align-items:center;justify-content:center;gap:9px;transition:transform .3s;box-shadow:0 8px 22px rgba(245,166,35,.38);margin-top:4px;}
-.btn-form-wa:hover{transform:translateY(-2px);}
-.btn-form-email{width:100%;padding:14px;border:1.5px solid rgba(255,255,255,.18);cursor:pointer;background:rgba(255,255,255,.09);color:#fff;font-family:'Fredoka One',cursive;font-size:16px;border-radius:50px;display:flex;align-items:center;justify-content:center;gap:9px;transition:all .3s;margin-top:10px;}
-.btn-form-email:hover{background:rgba(255,255,255,.18);transform:translateY(-2px);}
-.form-or{display:flex;align-items:center;gap:10px;margin:12px 0 0;}
-.form-or::before,.form-or::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.1);}
-.form-or span{font-size:10px;color:rgba(255,255,255,.3);font-weight:700;text-transform:uppercase;}
- 
-/* ═══ GALLERY ═══ */
-.gal-top{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:flex-end;margin-bottom:40px;}
-.gal-wrap{position:relative;padding:0 52px;}
-.gal-slider{display:flex;gap:14px;overflow:hidden;scroll-behavior:smooth;}
-.gi{flex:0 0 calc(33.333% - 10px);border-radius:18px;overflow:hidden;position:relative;cursor:pointer;aspect-ratio:4/3;transition:transform .3s;}
-.gi:hover{transform:scale(1.03);}
-.gi img{width:100%;height:100%;object-fit:cover;transition:transform .6s;display:block;}
-.gi:hover img{transform:scale(1.1);}
-.gi-over{position:absolute;inset:0;background:linear-gradient(135deg,rgba(92,45,145,.6),rgba(233,30,140,.4));opacity:0;display:flex;align-items:center;justify-content:center;transition:opacity .35s;}
-.gi:hover .gi-over{opacity:1;}
-.gi-over i{color:#fff;font-size:30px;}
-.gal-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:48px;height:48px;background:#fff;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 18px rgba(92,45,145,.18);transition:all .3s;color:var(--purple);font-size:17px;}
-.gal-btn:hover{background:var(--purple);color:#fff;transform:translateY(-50%) scale(1.08);}
-.gal-prev{left:0;}
-.gal-next{right:0;}
-.gal-dots{display:flex;justify-content:center;gap:8px;margin-top:18px;}
-.gal-dot{width:8px;height:8px;border-radius:50%;background:rgba(92,45,145,.2);cursor:pointer;transition:all .3s;}
-.gal-dot.active{background:var(--purple);width:22px;border-radius:4px;}
-.ig-bar{margin-top:28px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-radius:20px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
-.ig-left{display:flex;align-items:center;gap:13px;}
-.ig-ico{width:50px;height:50px;background:rgba(255,255,255,.2);border-radius:13px;display:flex;align-items:center;justify-content:center;}
-.ig-ico i{color:#fff;font-size:24px;}
-.ig-handle{font-family:'Fredoka One',cursive;font-size:21px;color:#fff;}
-.ig-desc{font-size:12px;color:rgba(255,255,255,.65);margin-top:2px;}
-.ig-follow{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#dc2743;font-family:'Fredoka One',cursive;font-size:14px;padding:11px 22px;border-radius:50px;transition:all .3s;}
-.ig-follow:hover{background:var(--ink);color:#fff;}
- 
-/* ═══ FACILITIES — Enhanced Effects ═══ */
-.fac-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
-.fac-particle{position:absolute;border-radius:50%;animation:fParticle linear infinite;opacity:0;}
-@keyframes fParticle{
-  0%{transform:translateY(100%) scale(0);opacity:0;}
-  20%{opacity:.6;}
-  80%{opacity:.3;}
-  100%{transform:translateY(-200px) scale(1.5) rotate(360deg);opacity:0;}
-}
-.fac-two{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:940px;margin:0 auto;position:relative;z-index:1;}
-.fac-col{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.1);border-radius:22px;padding:30px 26px;transition:all .4s;}
-.fac-col:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);}
-.fac-col-hd{font-family:'Fredoka One',cursive;font-size:19px;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:8px;}
-.fac-list{display:flex;flex-direction:column;gap:10px;}
-.fac-item{
-  display:flex;align-items:center;gap:12px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:11px;padding:13px 14px;
-  transition:all .35s;
-  position:relative;
-  overflow:hidden;
-  cursor:default;
-}
-.fac-item:hover{
-  background:rgba(255,255,255,.13);
-  transform:translateX(6px);
-  border-color:rgba(255,255,255,.18);
-}
-.fac-item:hover .fi-n{
-  transform:scale(1.15) rotate(-5deg);
-}
-/* Glow sweep on hover */
-.fi-glow{
-  position:absolute;
-  top:0;left:-100%;
-  width:60%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);
-  transition:left .5s ease;
-  pointer-events:none;
-}
-.fac-item:hover .fi-glow{left:150%;}
-.fi-n{
-  width:30px;height:30px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Fredoka One',cursive;font-size:13px;color:#fff;flex-shrink:0;
-  transition:transform .3s;
-  box-shadow:0 3px 10px rgba(0,0,0,.3);
-}
-.fp{background:linear-gradient(135deg,var(--purple),var(--purple2));}
-.fk{background:linear-gradient(135deg,var(--pink),#FF8C00);}
-.fi-t{font-size:13.5px;color:rgba(255,255,255,.85);font-weight:600;line-height:1.4;}
- 
-/* ═══ LOCATION ═══ */
-.loc-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;margin-top:44px;align-items:start;}
-.loc-cards{display:flex;flex-direction:column;gap:11px;}
-.loc-card{display:flex;align-items:flex-start;gap:13px;background:var(--soft);border:2px solid var(--border);border-radius:14px;padding:15px 14px;transition:all .3s;}
-.loc-card:hover{border-color:rgba(92,45,145,.25);transform:translateX(4px);}
-.loc-ico{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;}
-.loc-lbl{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:3px;}
-.loc-val{font-size:13.5px;color:var(--ink);line-height:1.6;font-weight:600;}
-.loc-val a{color:var(--purple);}
-.hours-box{background:linear-gradient(135deg,var(--purple),#3A1060);border-radius:16px;padding:20px 18px;margin-top:12px;}
-.hours-ttl{font-family:'Fredoka One',cursive;font-size:17px;color:#fff;margin-bottom:12px;}
-.hrow{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);}
-.hrow:last-child{border-bottom:none;}
-.hday{font-size:13px;color:rgba(255,255,255,.6);}
-.htime{font-size:13px;font-weight:700;color:#fff;}
-.map-wrap{border-radius:20px;overflow:hidden;border:3px solid var(--border);box-shadow:0 8px 26px rgba(92,45,145,.1);}
-.map-wrap iframe{width:100%;height:300px;border:none;display:block;}
-.map-btns{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:11px;}
-.map-btns a{display:flex;align-items:center;justify-content:center;gap:7px;padding:12px;border-radius:50px;font-size:11.5px;font-weight:800;transition:all .3s;min-height:44px;}
-.mbtn-maps{background:var(--purple);color:#fff;}
-.mbtn-maps:hover{background:var(--purple2);}
-.mbtn-wa{background:var(--green);color:#fff;}
-.mbtn-wa:hover{background:#1da851;}
- 
-/* ═══ PROG GRID ═══ */
-.prog-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:26px;
-  position:relative;
-  z-index:1;
-  max-width:900px;
-  margin:0 auto;
-}
- 
-/* ═══ FOOTER ═══ */
-footer{background:var(--ink);padding:60px 52px 22px;}
-.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px;}
-.ft-about{font-size:12.5px;color:rgba(255,255,255,.3);line-height:1.9;margin-top:10px;max-width:280px;}
-.ft-soc{display:flex;gap:8px;margin-top:16px;}
-.fts{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.28);font-size:13px;transition:all .3s;}
-.fts:hover{border-color:var(--gold);color:var(--gold);}
-.ft-col h4{font-size:9px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
-.ft-col a{display:block;font-size:12.5px;color:rgba(255,255,255,.28);margin-bottom:8px;transition:color .3s;}
-.ft-col a:hover{color:var(--gold);}
-.ft-col p{font-size:12px;color:rgba(255,255,255,.2);line-height:1.55;margin-top:4px;}
-.ft-bot{padding-top:18px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.16);}
- 
-/* ═══ LIGHTBOX ═══ */
-#lightbox{position:fixed;inset:0;background:rgba(10,4,26,.95);z-index:800;display:none;align-items:center;justify-content:center;}
-#lightbox.open{display:flex;}
-#lightbox img{max-width:90vw;max-height:85vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);}
-.lb-close{position:absolute;top:18px;right:22px;color:#fff;font-size:26px;cursor:pointer;padding:8px;}
-.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:22px;cursor:pointer;padding:14px;background:rgba(255,255,255,.1);border-radius:50%;transition:background .3s;}
-.lb-prev{left:14px;}.lb-next{right:14px;}
-.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.25);}
- 
-/* ═══ TOAST ═══ */
-#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;font-size:13.5px;font-weight:700;padding:12px 26px;border-radius:50px;box-shadow:0 8px 26px rgba(92,45,145,.35);z-index:1200;opacity:0;transition:all .4s;pointer-events:none;}
-#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
- 
-/* ═══ TABLET ═══ */
-@media(max-width:1100px){
-  .prog-grid{grid-template-columns:repeat(2,1fr);}
-  .ft-grid{grid-template-columns:1fr 1fr;gap:30px;}
-  .recog-grid{grid-template-columns:1fr 1.1fr;gap:40px;}
-  .nep-grid{grid-template-columns:1fr 1.3fr;gap:40px;}
-}
- 
-/* ═══ MOBILE ═══ */
-@media(max-width:900px){
-  #nav,#nav.solid{padding:11px 16px;}
-  .nav-links,.nav-right{display:none;}
-  .ham{display:flex;}
-  #hero{padding-top:70px;min-height:100svh;}
-  .hero-inner{padding:32px 16px 80px;}
-  .hero-two-col{grid-template-columns:1fr;gap:28px;}
-  .hero-imgs{display:none;}
-  .hero-badge{font-size:9px;padding:6px 12px;letter-spacing:1px;white-space:normal;text-align:center;justify-content:center;}
-  .hero-h1{font-size:clamp(30px,9vw,48px);line-height:1.15;}
-  .hero-p{font-size:14.5px;margin-bottom:26px;max-width:100%;}
-  .hero-btns{flex-direction:column;gap:10px;}
-  .btn-primary,.btn-wa-hero{width:100%;justify-content:center;padding:14px 20px;font-size:15px;min-height:50px;}
-  .bubbles{display:none;}
-  .sec{padding:52px 16px;}
-  .sec-title{font-size:clamp(24px,7vw,34px);}
-  .about-grid{grid-template-columns:1fr;gap:44px;margin-top:28px;}
-  .about-imgs{height:260px;}
-  .ai-main{width:76%;height:240px;}
-  .ai-sub{width:50%;height:160px;bottom:-10px;}
-  .ai-badge{right:-4px;}
-  .aib-n{font-size:28px;}
-  .abt-p{font-size:14.5px;}
-  .af-grid{grid-template-columns:1fr;}
-  .prog-grid{grid-template-columns:1fr 1fr;gap:14px;}
-  .prog-img{height:160px;}
-  .prog-name{font-size:20px;}
-  .prog-points li{font-size:12.5px;}
-  /* NEP mobile */
-  .nep-grid{grid-template-columns:1fr;gap:32px;}
-  .nep-left{order:2;}
-  .nep-right{order:1;}
-  .nep-badge-big{padding:24px 20px;}
-  .nep-badge-year{font-size:48px;}
-  .nep-pillars{grid-template-columns:repeat(3,1fr);}
-  /* recognition */
-  .recog-grid{grid-template-columns:1fr;gap:30px;}
-  .recog-top-badge{font-size:10px;padding:6px 13px;white-space:normal;text-align:center;line-height:1.4;}
-  .recog-h3{font-size:clamp(17px,5vw,24px);}
-  .recog-desc{font-size:13.5px;}
-  .person-row{grid-template-columns:1fr;gap:24px;padding:24px 18px;text-align:center;}
-  .person-row-photo{flex-direction:column;}
-  .pr-photo-wrap{width:150px;height:150px;}
-  .prc-divider{margin:16px auto;}
-  .adm-banner{flex-direction:column;text-align:center;padding:20px 16px;}
-  .adm-b-title{font-size:18px;}
-  .adm-grid{grid-template-columns:1fr;gap:32px;margin-top:18px;}
-  .adm-form{padding:24px 16px;}
-  .frow{grid-template-columns:1fr;}
-  .fg input,.fg select,.fg textarea{font-size:16px;}
-  .form-hd{font-size:20px;}
-  .gal-top{grid-template-columns:1fr;gap:8px;margin-bottom:24px;}
-  .gal-wrap{padding:0 38px;}
-  .gi{flex:0 0 calc(50% - 7px);}
-  .gi-over{opacity:1;background:rgba(92,45,145,.4);}
-  .ig-bar{flex-direction:column;text-align:center;gap:14px;padding:20px 16px;}
-  .ig-left{justify-content:center;}
-  .fac-two{grid-template-columns:1fr;}
-  .fac-col{padding:22px 18px;}
-  .loc-grid{grid-template-columns:1fr;gap:24px;margin-top:28px;}
-  .map-wrap iframe{height:220px;}
-  .map-btns{grid-template-columns:1fr 1fr;}
-  /* testimonials mobile - 1 card at a time */
-  .test-outer{gap:6px;}
-  .test-viewport{overflow:hidden;}
-  .test-track{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1);}
-  .test-card-new{
-    min-width:100% !important;
-    width:100% !important;
-    max-width:100% !important;
-    margin-right:0 !important;
-    box-sizing:border-box !important;
-    flex-shrink:0 !important;
-  }
-  .test-nav-btn{width:36px;height:36px;font-size:13px;flex-shrink:0;}
-  .nep-simple-p{font-size:14px;}
-  footer{padding:44px 16px 80px;}
-  .ft-grid{grid-template-columns:1fr;gap:24px;}
-  .ft-about{max-width:100%;}
-  .ft-bot{flex-direction:column;gap:6px;text-align:center;font-size:10px;}
-  .mob-bar{display:flex;}
-  .wa-float{display:none;}
-}
- 
-@media(max-width:600px){
-  .prog-grid{grid-template-columns:1fr;}
-  .prog-img{height:190px;}
-  .prog-body{padding:20px 16px;}
-  .nep-pillars{grid-template-columns:repeat(2,1fr);}
-  .adm-step{padding:12px 11px;}
-  .sn{width:36px;height:36px;font-size:16px;}
-  .principal-card{flex-direction:column;align-items:center;text-align:center;gap:10px;}
-  .sec-title{font-size:clamp(22px,7vw,30px);}
-  .hero-h1{font-size:clamp(28px,9vw,42px);}
-  .ft-soc{justify-content:flex-start;}
-  .test-card-slide{padding:20px 16px;}
-}
- 
-@media(max-width:420px){
-  .sec{padding:44px 14px;}
-  .hero-inner{padding:28px 14px 76px;}
-  .gal-wrap{padding:0 32px;}
-  .gi{flex:0 0 100%;}
-  .about-imgs{height:220px;}
-  .ai-main{height:200px;}
-  .ai-sub{height:140px;}
-  .adm-form{padding:20px 14px;}
-  .adm-banner{padding:16px 14px;}
-  .hero-badge{font-size:8.5px;}
-  .map-btns{grid-template-columns:1fr;}
-  .fac-col{padding:18px 14px;}
-  .nep-badge-big{padding:20px 16px;}
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Foster Kids School — Bhirr, Pacheri, Buhana, Jhunjhunu, Rajasthan</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="scroll-progress"></div>
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-inner">
+    <img src="images/images/logo.webp" alt="FosterKids" class="ld-logo-img"/>
+    <div class="ld-logo-text">
+      <span class="ld-foster">Foster</span><span class="ld-kids"><span class="k-reg-wrap">K<span class="reg-above">&reg;</span></span>ids</span>
+      <div class="ld-school-txt">School &middot; Bhirr, Pacheri, Buhana, Jhunjhunu, Rajasthan</div>
+    </div>
+    <div class="ld-bar"><div class="ld-fill"></div></div>
+    <p class="ld-tag">Where Every Child's Future Begins &#10024;</p>
+  </div>
+</div>
+<!-- WA FLOAT -->
+<a href="https://wa.me/919729313222" target="_blank" class="wa-float">
+  <div class="wa-pulse"></div>
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<!-- MOBILE BAR -->
+<div class="mob-bar">
+  <a href="tel:+919729313222" class="mb-call"><i class="fa-solid fa-phone"></i><span>Call</span></a>
+  <a href="https://wa.me/919729313222" target="_blank" class="mb-wa"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></a>
+  <a href="#admissions" class="mb-adm"><i class="fa-solid fa-star"></i><span>Admissions</span></a>
+</div>
+<!-- DRAWER -->
+<div id="drawer">
+  <button class="dclose" onclick="closeD()"><i class="fa-solid fa-xmark"></i></button>
+  <div class="d-brand">Foster<span><span class="k-reg-wrap">K<span class="reg-above">&reg;</span></span>ids</span></div>
+  <a class="dlink" href="#about" onclick="closeD()"><i class="fa-solid fa-school"></i> About</a>
+  <a class="dlink" href="#programs" onclick="closeD()"><i class="fa-solid fa-star"></i> Programs</a>
+  <a class="dlink" href="#nep" onclick="closeD()"><i class="fa-solid fa-book-open"></i> NEP 2020</a>
+  <a class="dlink" href="#recognition" onclick="closeD()"><i class="fa-solid fa-award"></i> Recognition</a>
+  <a class="dlink" href="#founder" onclick="closeD()"><i class="fa-solid fa-crown"></i> Founder</a>
+  <a class="dlink" href="#admissions" onclick="closeD()"><i class="fa-solid fa-door-open"></i> Admissions</a>
+  <a class="dlink" href="#gallery" onclick="closeD()"><i class="fa-solid fa-images"></i> Gallery</a>
+  <a class="dlink" href="#facilities" onclick="closeD()"><i class="fa-solid fa-building"></i> Facilities</a>
+  <a class="dlink" href="#location" onclick="closeD()"><i class="fa-solid fa-location-dot"></i> Location</a>
+  <a class="d-enq" href="#admissions" onclick="closeD()">Enquire Now</a>
+</div>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="images/images/logo.webp" alt="FosterKids" class="nav-logo-img"/>
+    <div>
+      <div class="nl-name"><span class="fk-p">Foster</span><span class="fk-k"><span class="k-reg-wrap">K<span class="reg-above">&reg;</span></span>ids</span></div>
+      <div class="nl-sub">School &middot; Bhirr, Pacheri, Buhana</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#nep">NEP 2020</a></li>
+    <li><a href="#recognition">Recognition</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#admissions">Admissions</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#location">Location</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://www.instagram.com/fosterkidsbuhana?utm_source=gr&igsh=MmE1d3M3b3JzNndh" target="_blank" class="nav-ig"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#admissions" class="nav-admit">&#127890; Admissions Open</a>
+  </div>
+  <button class="ham" onclick="openD()"><span></span><span></span><span></span></button>
+</nav>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg" id="heroBg" style="background-image:url('images/images/hero.jpeg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="bubbles">
+    <div class="bubble b1">&#127912;</div><div class="bubble b2">&#128218;</div>
+    <div class="bubble b3">&#127925;</div><div class="bubble b4">&#11088;</div>
+    <div class="bubble b5">&#127917;</div><div class="bubble b6">&#127752;</div>
+  </div>
+  <div class="hero-inner hero-two-col">
+    <div class="hero-text">
+      <div class="hero-badge"><i class="fa-solid fa-award"></i> Admissions Open &middot; 2026-27 &middot; Bhirr, Pacheri, Buhana, Jhunjhunu, Rajasthan</div>
+      <h1 class="hero-h1">Where Every Child's<br/><span class="c-gold-txt">Future Begins</span><br/>with Joy &amp; Care &#127775;</h1>
+      <p class="hero-p">Foster Kids School, Bhirr, Pacheri, Buhana &mdash; a warm and nurturing early learning environment designed to spark curiosity, build confidence and celebrate every child's unique potential.</p>
+      <div class="hero-btns">
+        <a href="#admissions" class="btn-primary"><i class="fa-solid fa-door-open"></i> Apply for Admission</a>
+        <a href="https://wa.me/919729313222" target="_blank" class="btn-wa-hero"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+      </div>
+    </div>
+    <div class="hero-imgs">
+      <div class="himg-main">
+        <img src="images/images/heros1.jpeg" alt="Happy Kids"/>
+        <div class="himg-lbl">&#128522; Happy Kids</div>
+      </div>
+      <div class="himg-sm">
+        <img src="images/images/hero2.jpeg" alt="Play and Learn"/>
+        <div class="himg-lbl">&#127912; Play &amp; Learn</div>
+      </div>
+      <div class="himg-sm">
+        <img src="images/images/hero3.jpeg" alt="Art and Craft"/>
+        <div class="himg-lbl">&#127918; Art &amp; Craft</div>
+      </div>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none">
+    <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,40 L1440,80 L0,80 Z" fill="#FDF8FF"/>
+  </svg>
+</section>
+<!-- ABOUT -->
+<section id="about" class="sec bg-white sec-reveal">
+  <div class="sec-lbl purple-lbl"><i class="fa-solid fa-school"></i> About FosterKids</div>
+  <h2 class="sec-title">Foster Kids School &mdash; Bhirr, Pacheri, Buhana <span class="c-purple">Most Trusted School</span></h2>
+  <div class="recog-top-badge" style="margin-bottom:24px;display:inline-flex;">&#127891; First School Using Multiple Intelligence Enabled Curriculum</div>
+  <div class="about-grid">
+    <div class="about-imgs fade zoom-img">
+      <div class="ai-main"><img src="images/images/about-1.jpeg" alt="School"/></div>
+      <div class="ai-sub"><img src="images/images/about-2.jpeg" alt="Students"/></div>
+      <div class="ai-badge"><div class="aib-n">15+</div><div class="aib-l">Years of<br/>Excellence</div></div>
+    </div>
+    <div class="about-content">
+      <p class="abt-p fade">Foster Kids School is a premium early childhood education institution in Bhirr, Tehsil Buhana, District Jhunjhunu, Rajasthan. We nurture every child's natural love for learning through activity-based, play-centred education.</p>
+      <p class="abt-p fade">Our expert educators, child-friendly infrastructure and warm family atmosphere make FosterKids the top choice for parents in Bhirr, Pacheri, Buhana, Jhunjhunu. To nurture young minds with quality education, strong values, and creativity, empowering every child to become a confident, responsible, and successful individual in life.</p>
+      <p class="abt-p fade">Foster Kids School is committed to providing a strong foundation for young learners. We believe that every child is unique and full of potential. Our focus is on holistic development combining education, discipline, creativity, and moral values to shape a better future.</p>
+      <div class="pills fade">
+        <span class="pill p1">&#127880; Play Group</span>
+        <span class="pill p2">&#127800; Nursery</span>
+        <span class="pill p3">&#128218; LKG</span>
+        <span class="pill p4">&#9999;&#65039; UKG</span>
+      </div>
+      <div class="af-grid fade">
+        <div class="af-card">
+          <div class="af-ico" style="background:#F0EAFF;"><i class="fa-solid fa-shield-halved" style="color:#5C2D91;"></i></div>
+          <div><div class="af-t">Safe Campus</div><div class="af-s">CCTV-monitored, child-safe campus with secure entry.</div></div>
+        </div>
+        <div class="af-card">
+          <div class="af-ico" style="background:#FFF0F8;"><i class="fa-brands fa-whatsapp" style="color:#E91E8C;"></i></div>
+          <div><div class="af-t">Daily Parent Updates</div><div class="af-s">Photos and updates shared daily on WhatsApp.</div></div>
+        </div>
+        <div class="af-card">
+          <div class="af-ico" style="background:#FFF8E0;"><i class="fa-solid fa-bus" style="color:#8B6000;"></i></div>
+          <div><div class="af-t">School Transport</div><div class="af-s">Safe School Cab covering Bhirr, Pacheri, Buhana and nearby areas.</div></div>
+        </div>
+        <div class="af-card">
+          <div class="af-ico" style="background:#E8FFF5;"><i class="fa-solid fa-soap" style="color:#006B3C;"></i></div>
+          <div><div class="af-t">Hygienic School</div><div class="af-s">Spotlessly clean classrooms, sanitised toys and hygienic washrooms daily.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- PROGRAMS -->
+<section id="programs" class="sec bg-purple sec-reveal">
+  <h2 class="sec-title light" style="text-align:center;">Learning Programs at <span class="c-gold">FosterKids</span> &#127890;</h2>
+  <p style="text-align:center;color:rgba(255,255,255,.55);font-size:15px;margin:10px auto 44px;max-width:500px;">Every program is crafted for tiny learners &mdash; joyful, activity-based and age-appropriate.</p>
+  <div class="prog-grid">
+    <div class="prog-card fade">
+      <div class="prog-img"><img src="images/images/playgroup.jpeg" alt="Play Group"/></div>
+      <div class="prog-body">
+        <div class="prog-name">&#127880; Play Group</div>
+        <ul class="prog-points">
+          <li>Fun-filled first steps into school life</li>
+          <li>Games, songs and creative play activities</li>
+          <li>Builds social skills and confidence</li>
+          <li>Nurtures curiosity and exploration</li>
+        </ul>
+        <div class="prog-age"><i class="fa-solid fa-child"></i> Age 1.5 &ndash; 2.5 Years</div>
+      </div>
+    </div>
+    <div class="prog-card fade">
+      <div class="prog-img"><img src="images/images/nursury.jpeg" alt="Nursery"/></div>
+      <div class="prog-body">
+        <div class="prog-name">&#127800; Nursery</div>
+        <ul class="prog-points">
+          <li>Gentle, nurturing introduction to learning</li>
+          <li>Sensory play, stories and creative activities</li>
+          <li>Develops emotional and social skills</li>
+          <li>Unique blend of essential early skills</li>
+        </ul>
+        <div class="prog-age"><i class="fa-solid fa-child"></i> Age 2.5 &ndash; 3.5 Years</div>
+      </div>
+    </div>
+    <div class="prog-card fade">
+      <div class="prog-img"><img src="images/images/lkg.jpeg" alt="LKG"/></div>
+      <div class="prog-body">
+        <div class="prog-name">&#128218; LKG</div>
+        <ul class="prog-points">
+          <li>Early literacy and numeracy foundations</li>
+          <li>Fun, activity-based learning approach</li>
+          <li>Language development and storytelling</li>
+          <li>Builds social skills in loving environment</li>
+        </ul>
+        <div class="prog-age"><i class="fa-solid fa-child"></i> Age 3.5 &ndash; 4.5 Years</div>
+      </div>
+    </div>
+    <div class="prog-card fade">
+      <div class="prog-img"><img src="images/images/ukg.jpeg" alt="UKG"/></div>
+      <div class="prog-body">
+        <div class="prog-name">&#9999;&#65039; UKG</div>
+        <ul class="prog-points">
+          <li>Strengthens language and math skills</li>
+          <li>Creative thinking and problem solving</li>
+          <li>Primary school readiness preparation</li>
+          <li>Builds confidence and independence</li>
+        </ul>
+        <div class="prog-age"><i class="fa-solid fa-child"></i> Age 4.5 &ndash; 5.5 Years</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- NEP 2020 -->
+<section id="nep" class="sec bg-white sec-reveal">
+  <div class="nep-simple-wrap">
+    <div class="nep-simple-inner fade">
+      <div class="nep-simple-tag"><i class="fa-solid fa-book-open"></i> NEP 2020</div>
+      <h2 class="nep-simple-title">Foster Kids School, Bhirr Pacheri Buhana proudly has a team of NEP 2020 certified teachers dedicated to providing innovative and quality education &#127775;</h2>
+      <p class="nep-simple-p">Foster Kids, one of <strong>India's No.1 play school brands, has thoughtfully designed its curriculum in complete alignment with the National Education Policy (NEP) 2020. The policy emphasizes the Foundational Stage (ages 3-8) as the most critical phase of a child's development, and Foster Kids has seamlessly integrated these principles into its teaching-learning practices.</p>
+      <p class="nep-simple-p">Our curriculum focuses on <strong>experiential, play-based, and activity-driven learning</strong>, encouraging curiosity, creativity, and problem-solving skills. It blends <strong>art, music, movement, storytelling</strong>, and hands-on exploration to make learning joyful and meaningful. The program nurtures <strong>early literacy, numeracy, and socio-emotional skills</strong> in a stress-free environment.</p>
+      <p class="nep-simple-p">In accordance with <strong>NEP 2020</strong>, Foster Kids promotes <strong>multilingual exposure, inclusivity</strong>, and the integration of <strong>Indian values with global perspectives</strong>. Teachers create a flexible, child-centred classroom where every child learns at their own pace.</p>
+      <p class="nep-simple-p">Through this <strong>NEP-aligned approach</strong>, Foster Kids ensures children receive a strong foundation for <strong>lifelong learning</strong>, preparing them for academic success while fostering <strong>confidence, empathy, and independence</strong> &mdash; education rooted in <strong>play, growth, and joyful discovery</strong>.</p>
+    </div>
+  </div>
+</section>
+<!-- RECOGNITION -->
+<section id="recognition" class="sec bg-cream sec-reveal">
+  <div class="sec-lbl gold-lbl"><i class="fa-solid fa-award"></i> Government Recognised</div>
+  <h2 class="sec-title">Officially <span class="c-gold">Recognised</span> by Govt. of India &#127942;</h2>
+  <div class="recog-grid">
+    <div class="recog-left fade zoom-img">
+      <div class="cert-img-wrap">
+        <img src="images/images/certificate.jpeg" alt="Government Certificate" class="cert-img"/>
+      </div>
+      <div class="cert-ribbon"><i class="fa-solid fa-award"></i> Official Government Certificate</div>
+    </div>
+    <div class="recog-right fade">
+      <div class="recog-top-badge">&#127891; First School Using Multiple Intelligence Enabled Curriculum</div>
+      <h3 class="recog-h3">Foster Kids School Creates History &mdash;<br/><span style="color:#8B6000;">A Moment of Pride for Buhana &amp; Pacheri Region</span></h3>
+      <p class="recog-desc"><strong>On behalf of the Ministry of Education, Government of India</strong> &mdash; <strong>Foster Kids School, Bhirr, Buhana has been officially recognised under the Government Recognised VENTEL Action Plan. Recognised by MGNCRE (Mahatma Gandhi National Council of Rural Education), Government of India.</strong></p>
+      <div class="recog-points">
+        <div class="rp"><span class="rp-ico">&#9989;</span><span><strong>Value Education</strong> &mdash; Productive Work with Economic Value</span></div>
+        <div class="rp"><span class="rp-ico">&#9989;</span><span><strong>Experiential Learning</strong> &mdash; Activity-based classroom approach</span></div>
+        <div class="rp"><span class="rp-ico">&#9989;</span><span><strong>Skill-Based Development</strong> &mdash; Faculty &amp; Trainer development</span></div>
+        <div class="rp"><span class="rp-ico">&#9989;</span><span><strong>Community Engagement</strong> &mdash; Culture &amp; Values by Gandhi's Nai Talim</span></div>
+      </div>
+      <div class="principal-card">
+        <div class="pc-av"><i class="fa-solid fa-user-tie"></i></div>
+        <div>
+          <div class="pc-lbl">Chairman</div>
+          <div class="pc-name">Mr. Naresh Yadav</div>
+          <div class="pc-school">Foster Kids School</div>
+        </div>
+        <div>
+          <div class="pc-lbl">Principal</div>
+          <div class="pc-name">Mrs. Manju Sharma</div>
+          <div class="pc-school">Foster Kids School</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FOUNDER -->
+<section id="founder" class="sec bg-soft sec-reveal">
+  <div class="sec-lbl purple-lbl"><i class="fa-solid fa-crown"></i> Founder &amp; Owner</div>
+  <h2 class="sec-title">The People Behind <span class="c-purple">FosterKids</span> &#128081;</h2>
+  <p style="font-size:15px;color:var(--gray);margin:8px 0 48px;line-height:1.8;">Foster Kids School Bhirr is built on the vision of two people &mdash; one who dreamed it, and one who made it a reality in their community</p>
+  <div class="person-row fade">
+    <div class="person-row-photo">
+      <div class="pr-photo-wrap founder-border">
+        <img src="images/images/founder.jpeg" alt="Founder" class="pr-photo"/>
+      </div>
+      <div class="pr-badge founder-clr">&#128081; Chain Founder</div>
+    </div>
+    <div class="person-row-content">
+      <div class="prc-tag founder-tag">Foster Kids Pre School Chain &mdash; Founder &amp; CEO</div>
+      <div class="prc-name">Mr. Umesh Chaudhary</div>
+      <div class="prc-role">Founder &amp; CEO - Passionate about early childhood education</div>
+      <div class="prc-divider"></div>
+      <p class="prc-msg">"Foster Kids envisions optimizing the hidden potential of kids across the nation. We create global citizens with deep rooted Indian values so as to contribute their share to the society when they grow up. To nurture and develop innate power and talent of every student from all backgrounds to serve our glorious country. Our teachers are trained to work upon established norms of early childhood education with due care. At the same time, they are conditioned to keep in mind the commitment towards academic excellence, moral values, character building and spiritual growth of the child."</p>
+      <div class="prc-sign">Mr. Umesh Chaudhary</div>
+      <div class="prc-sign-sub">Passionate about Early Childhood Education</div>
+    </div>
+  </div>
+  <div class="person-sep"></div>
+  <div class="person-row fade">
+    <div class="person-row-photo">
+      <div class="pr-photo-wrap owner-border">
+        <img src="images/images/owner.jpeg" alt="Owner" class="pr-photo"/>
+      </div>
+      <div class="pr-badge owner-clr">School Owner</div>
+    </div>
+    <div class="person-row-content">
+      <div class="prc-tag owner-tag">Foster Kids School, Bhirr, Pacheri, Buhana &mdash; Owner</div>
+      <div class="prc-name">Mr. Naresh Yadav</div>
+      <div class="prc-role">School Owner &amp; Franchise Partner</div>
+      <div class="prc-divider"></div>
+      <p class="prc-msg">"My vision is to create a joyful and nurturing learning environment where every child feels safe, valued, and inspired to explore their talents. At Foster Kids School, we aim to build a strong foundation of knowledge, values, and creativity that helps children grow into confident and responsible individuals. Our mission is to provide a safe, caring, and engaging learning environment where children develop academically, socially and emotionally guided by experienced educators and modern teaching methods."</p>
+      <div class="prc-sign">Mr. Naresh Yadav</div>
+      <div class="prc-sign-sub">Foster Kids Franchise Partner &middot; Bhirr, Pacheri, Buhana</div>
+    </div>
+  </div>
+</section>
+<!-- ADMISSIONS -->
+<section id="admissions" class="sec bg-white sec-reveal">
+  <div class="adm-banner fade">
+    <div>
+      <div class="adm-b-title">&#127890; Admissions Open &mdash; Academic Year 2026-27</div>
+      <div class="adm-b-sub">Play Group &middot; Nursery &middot; LKG &middot; UKG &nbsp;|&nbsp; Limited Seats &mdash; Enroll Today!</div>
+    </div>
+    <a href="https://wa.me/919729313222" target="_blank" class="adm-wa-btn"><i class="fa-brands fa-whatsapp"></i> Enquire on WhatsApp</a>
+  </div>
+  <div class="sec-lbl pink-lbl"><i class="fa-solid fa-door-open"></i> Admissions</div>
+  <h2 class="sec-title">Join the <span class="c-pink">FosterKids</span> Family &#127775;</h2>
+  <div class="adm-grid">
+    <div>
+      <p class="adm-intro fade">Admissions are now open for 2026-27. Our process is simple, friendly and parent-oriented.</p>
+      <div class="adm-steps">
+        <div class="adm-step fade"><div class="sn s1">1</div><div><div class="st">Submit Enquiry</div><div class="ss">Fill the form or WhatsApp us with your child's basic details.</div></div></div>
+        <div class="adm-step fade"><div class="sn s2">2</div><div><div class="st">Campus Visit</div><div class="ss">Schedule a visit to our school in Bhirr, Near Bank of Baroda and meet our team.</div></div></div>
+        <div class="adm-step fade"><div class="sn s3">3</div><div><div class="st">Interaction Session</div><div class="ss">A warm, pressure-free interaction session with your child.</div></div></div>
+        <div class="adm-step fade"><div class="sn s4">4</div><div><div class="st">Confirm Admission</div><div class="ss">Complete registration and welcome to the FosterKids family!</div></div></div>
+      </div>
+    </div>
+    <div class="adm-form fade">
+      <div class="form-hd">&#128203; Admission Enquiry</div>
+      <div class="form-sub">Fill in the details &mdash; we'll respond within 24 hours!</div>
+      <div class="frow">
+        <div class="fg"><label>Parent Name *</label><input type="text" id="pName" placeholder="Your full name"/></div>
+        <div class="fg"><label>Child's Name</label><input type="text" id="cName" placeholder="Child's name"/></div>
+      </div>
+      <div class="fg"><label>Phone Number *</label><input type="tel" id="phone" placeholder="+91 97293 13222"/></div>
+      <div class="frow">
+        <div class="fg"><label>Applying For *</label>
+          <select id="grade"><option value="" disabled selected>Select program</option><option>Play Group</option><option>Nursery</option><option>LKG</option><option>UKG</option></select>
+        </div>
+        <div class="fg"><label>Child's Age</label>
+          <select id="age"><option value="" disabled selected>Select age</option><option>1.5 years</option><option>2 years</option><option>2.5 years</option><option>3 years</option><option>3.5 years</option><option>4 years</option><option>4.5 years</option><option>5 years</option><option>5.5 years</option></select>
+        </div>
+      </div>
+      <div class="fg"><label>Message (Optional)</label><textarea id="msg" placeholder="Any questions or special requirements..."></textarea></div>
+      <button class="btn-form-wa" onclick="sendEnquiryWA()"><i class="fa-brands fa-whatsapp"></i> Send via WhatsApp</button>
+      <div class="form-or"><span>or</span></div>
+      <button class="btn-form-email" onclick="sendEnquiryEmail()"><i class="fa-solid fa-envelope"></i> Send via Email</button>
+    </div>
+  </div>
+</section>
+<!-- GALLERY -->
+<section id="gallery" class="sec bg-soft sec-reveal">
+  <div class="gal-top">
+    <div>
+      <div class="sec-lbl green-lbl"><i class="fa-solid fa-images"></i> School Life</div>
+      <h2 class="sec-title">Our Gallery &#128248;</h2>
+    </div>
+    <p class="sec-sub-r">Glimpses of joyful learning, play and celebrations at FosterKids Bhirr, Pacheri, Buhana.</p>
+  </div>
+  <div class="gal-wrap">
+    <button class="gal-btn gal-prev" onclick="slideGallery(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="gal-slider" id="gallerySlider"></div>
+    <button class="gal-btn gal-next" onclick="slideGallery(1)"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+  <div class="gal-dots" id="galDots"></div>
+  <div class="ig-bar fade">
+    <div class="ig-left">
+      <div class="ig-ico"><i class="fa-brands fa-instagram"></i></div>
+      <div><div class="ig-handle">@fosterkidsbuhana</div><div class="ig-desc">Follow us for daily school updates, events and student moments</div></div>
+    </div>
+    <a href="https://www.instagram.com/fosterkidsbuhana?utm_source=gr&igsh=MmE1d3M3b3JzNndh" target="_blank" class="ig-follow"><i class="fa-brands fa-instagram"></i> Follow on Instagram</a>
+  </div>
+</section>
+<!-- FACILITIES -->
+<section id="facilities" class="sec bg-dark sec-reveal">
+  <div class="fac-particles" id="facParticles"></div>
+  <h2 class="sec-title light" style="text-align:center;">Features &amp; <span class="c-gold">Facilities</span> &#127979;</h2>
+  <p style="text-align:center;color:rgba(255,255,255,.45);font-size:15px;margin:10px auto 48px;max-width:520px;">World-class facilities in Bhirr, Pacheri, Buhana, Jhunjhunu &mdash; designed for safe, joyful and holistic learning.</p>
+  <div class="fac-two">
+    <div class="fac-col fade">
+      <div class="fac-col-hd"><i class="fa-solid fa-star"></i> Main Features</div>
+      <div class="fac-list">
+        <div class="fac-item"><span class="fi-n fp">1</span><span class="fi-t">Fully A.C Campus</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fp">2</span><span class="fi-t">CCTV Security System Enabled School</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fp">3</span><span class="fi-t">Truly English Medium</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fp">4</span><span class="fi-t">Advance Teaching Aids &amp; Play Tools</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fp">5</span><span class="fi-t">Technology Integrated Learning</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fp">6</span><span class="fi-t">Curriculum Designed by Subject Specialists</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fp">7</span><span class="fi-t">Transport Facilities On All Routes</span><span class="fi-glow"></span></div>
+      </div>
+    </div>
+    <div class="fac-col fade">
+      <div class="fac-col-hd"><i class="fa-solid fa-sparkles"></i> Other Facilities</div>
+      <div class="fac-list">
+        <div class="fac-item"><span class="fi-n fk">1</span><span class="fi-t">Stage Performance</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fk">2</span><span class="fi-t">Activity Arcade</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fk">3</span><span class="fi-t">Learn by Fun</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fk">4</span><span class="fi-t">Dance Classes</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fk">5</span><span class="fi-t">National / Traditional Festival Celebrations</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fk">6</span><span class="fi-t">Develop Good Manners &amp; Habits</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fk">7</span><span class="fi-t">Outdoor Games &mdash; Play Tools</span><span class="fi-glow"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- LOCATION -->
+<section id="location" class="sec bg-white sec-reveal">
+  <div class="sec-lbl gold-lbl"><i class="fa-solid fa-location-dot"></i> Find Us</div>
+  <h2 class="sec-title">Visit <span class="c-gold">Foster Kids School</span>, Bhirr &#128205;</h2>
+  <div class="loc-grid">
+    <div>
+      <div class="loc-cards">
+        <div class="loc-card fade"><div class="loc-ico" style="background:#F0EAFF;"><i class="fa-solid fa-location-dot" style="color:#5C2D91;"></i></div><div><div class="loc-lbl">Address</div><div class="loc-val">Foster Kids School, VPO - Bhirr,<br/>Main Pacheri to Buhana Road,<br/>Near Bank of Baroda,<br/>Tehsil Buhana, Jhunjhunu - 333515</div></div></div>
+        <div class="loc-card fade"><div class="loc-ico" style="background:#FFF0F8;"><i class="fa-solid fa-phone" style="color:#E91E8C;"></i></div><div><div class="loc-lbl">Phone &amp; WhatsApp</div><div class="loc-val">+91 9729313222, 8059313222</div></div></div>
+        <div class="loc-card fade"><div class="loc-ico" style="background:#FFF8E0;"><i class="fa-solid fa-envelope" style="color:#8B6000;"></i></div><div><div class="loc-lbl">Email</div><div class="loc-val"><a href="mailto:fosterkidsbhirr@gmail.com">fosterkidsbhirr@gmail.com</a></div></div></div>
+        <div class="loc-card fade"><div class="loc-ico" style="background:linear-gradient(135deg,#f09433,#bc1888);"><i class="fa-brands fa-instagram" style="color:#fff;"></i></div><div><div class="loc-lbl">Instagram</div><div class="loc-val"><a href="https://www.instagram.com/fosterkidsbuhana?igsh=MXd5NngyOW13bnI5Ng==" target="_blank">@fosterkidsbuhana</a></div></div></div>
+      </div>
+      <div class="hours-box fade">
+        <div class="hours-ttl">&#128336; School Hours</div>
+        <div class="hrow"><span class="hday">Monday &ndash; Friday</span><span class="htime">9:00 AM &ndash; 2:00 PM</span></div>
+        <div class="hrow"><span class="hday">Saturday</span><span class="htime">Closed</span></div>
+        <div class="hrow"><span class="hday">Sunday</span><span class="htime">Closed</span></div>
+        <div class="hrow"><span class="hday">Office Hours</span><span class="htime">9:00 AM &ndash; 3:00 PM</span></div>
+      </div>
+    </div>
+    <div class="fade">
+      <div class="map-wrap"><iframe src="https://maps.app.goo.gl/zKuKwDxos9k35vCM8" allowfullscreen loading="lazy" title="Location"></iframe></div>
+      <div class="map-btns">
+        <a href="https://www.google.com/maps/search/Foster+School+Bhirr+Buhana+Jhunjhunu+Rajasthan" target="_blank" class="mbtn-maps"><i class="fa-solid fa-map"></i> Open in Maps</a>
+        <a href="https://wa.me/919729313222" target="_blank" class="mbtn-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="sec bg-soft sec-reveal">
+  <div class="sec-lbl purple-lbl" style="justify-content:center;display:flex;margin:0 auto 14px;"><i class="fa-solid fa-heart"></i> Parent Reviews</div>
+  <h2 class="sec-title" style="text-align:center;">What <span class="c-purple">Parents</span> Say &#128172;</h2>
+  <div class="test-outer fade">
+    <button class="test-nav-btn" onclick="moveTest(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="test-viewport">
+      <div class="test-track" id="testSlider">
+        <div class="test-card-new">
+          <div class="test-q">"</div>
+          <div class="test-stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+          <p class="test-txt">"My daughter used to cry before school &mdash; now she wakes up excited every morning! FosterKids has transformed her confidence. The teachers are incredibly patient and caring."</p>
+          <div class="test-auth"><div class="test-av"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" alt=""/></div><div><div class="test-name">Ashish Sharma</div><div class="test-role">Parent &middot; Pacheri (Daughter)</div></div></div>
+        </div>
+        <div class="test-card-new">
+          <div class="test-q">"</div>
+          <div class="test-stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+          <p class="test-txt">"Best school in Bhirr &mdash; no question. The founder personally knows every child by name. My son has developed so much in just a few months here!"</p>
+          <div class="test-auth"><div class="test-av"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80" alt=""/></div><div><div class="test-name">Sanjay Yadav</div><div class="test-role">Parent &middot; Shed (Son)</div></div></div>
+        </div>
+        <div class="test-card-new">
+          <div class="test-q">"</div>
+          <div class="test-stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+          <p class="test-txt">"We receive WhatsApp photos every day &mdash; that kind of transparency is rare. The activities keep him happy and growing. FosterKids is wonderful!"</p>
+          <div class="test-auth"><div class="test-av"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80" alt=""/></div><div><div class="test-name">Pradeep</div><div class="test-role">Parent &middot; Bhuana (Daughter)</div></div></div>
+        </div>
+        <div class="test-card-new">
+          <div class="test-q">"</div>
+          <div class="test-stars">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+          <p class="test-txt">"Excellent Play School, best teaching technique. Staff are very cooperative and helpful. Highly recommend to every parent in Buhana region!"</p>
+          <div class="test-auth"><div class="test-av"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&q=80" alt=""/></div><div><div class="test-name">Vishwas</div><div class="test-role">Parent &middot; Meghpur (Son)</div></div></div>
+        </div>
+      </div>
+    </div>
+    <button class="test-nav-btn" onclick="moveTest(1)"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+  <div class="test-dots" id="testDots"></div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <img src="images/images/logo.webp" alt="FosterKids" class="ft-logo-img"/>
+      <div class="ft-logo-text">
+        <span class="ftl-foster">Foster</span><span class="ftl-kids"><span class="k-reg-wrap">K<span class="reg-above">&reg;</span></span>ids</span>
+        <span class="ftl-sub">School &middot; Bhirr, Pacheri, Buhana, Jhunjhunu, Rajasthan</span>
+      </div>
+      <p class="ft-about">Foster Kids School, VPO Bhirr, Near Bank of Baroda, Tehsil Buhana, Jhunjhunu, Rajasthan &mdash; where every child's journey begins with joy, love and curiosity.</p>
+      <div class="ft-soc">
+        <a href="https://www.instagram.com/fosterkidsbuhana?utm_source=gr&igsh=MmE1d3M3b3JzNndh" target="_blank" class="fts"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/919729313222" target="_blank" class="fts"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://facebook.com" target="_blank" class="fts"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://youtube.com" target="_blank" class="fts"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="ft-col"><h4>Programs</h4><a href="#programs">Play Group</a><a href="#programs">Nursery</a><a href="#programs">LKG</a><a href="#programs">UKG</a></div>
+    <div class="ft-col"><h4>Quick Links</h4><a href="#about">About School</a><a href="#nep">NEP 2020</a><a href="#recognition">Recognition</a><a href="#founder">Founder</a><a href="#admissions">Admissions</a><a href="#gallery">Gallery</a><a href="#location">Location</a></div>
+    <div class="ft-col"><h4>Contact</h4><a href="tel:+919729313222">+91 9729313222</a><a href="https://wa.me/919729313222">WhatsApp</a><a href="https://www.instagram.com/fosterkidsbuhana?igsh=MXd5NngyOW13bnI5Ng==" target="_blank">@fosterkidsbuhana</a><a href="mailto:fosterkidsbhirr@gmail.com">fosterkidsbhirr@gmail.com</a><p>VPO Bhirr, Tehsil Buhana,<br/>Jhunjhunu, Raj. - 333515</p></div>
+  </div>
+  <div class="ft-bot"><span>&copy; 2026 Foster Kids School, Bhirr, Pacheri, Buhana, Jhunjhunu, Rajasthan. All Rights Reserved.</span><span>&#127775; Building brighter futures in Bhirr, Pacheri, Buhana, Jhunjhunu</span></div>
+</footer>
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <span class="lb-close" onclick="closeLB()"><i class="fa-solid fa-xmark"></i></span>
+  <span class="lb-prev" onclick="lbNav(-1)"><i class="fa-solid fa-chevron-left"></i></span>
+  <img id="lbImg" src="" alt=""/>
+  <span class="lb-next" onclick="lbNav(1)"><i class="fa-solid fa-chevron-right"></i></span>
+</div>
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
 
