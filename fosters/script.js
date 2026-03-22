@@ -15,15 +15,15 @@ const GALLERY = [
   'images/gallery10.jpeg',
    'images/gallery10.jpeg',
    'images/gallery11.jpeg',
-   'images/gallery12.jpeg',
-   'images/gallery13.jpeg',
-   'images/gallery14.jpeg',
-   'images/gallery15.jpeg',
-   'images/gallery16.jpeg',
-   'images/gallery17.jpeg',
-   'images/gallery18.jpeg',
-   'images/gallery19.jpeg',
-   'images/gallery20.jpeg'
+   'images/gallery-12.jpeg',
+   'images/gallery-13.jpeg',
+   'images/gallery-14.jpeg',
+   'images/gallery-15.jpeg',
+   'images/gallery-16.jpeg',
+   'images/gallery-17.jpeg',
+   'images/gallery-18.jpeg',
+   'images/gallery-19.jpeg',
+   'images/gallery-20.jpeg'
    
    
 ];
