@@ -1,6 +1,5 @@
 /* ══════════════════════════════════════════
-   FOSTER KIDS SCHOOL — script.js
-   Gallery images: apni images ka path daalo
+   FOSTER KIDS SCHOOL — script.js (Updated)
 ══════════════════════════════════════════ */
 
 const GALLERY = [
@@ -16,7 +15,19 @@ const GALLERY = [
   'images/gallery10.jpeg',
 ];
 
-// ── GALLERY ─────────────────────────────────
+// ── SCROLL PROGRESS BAR ──────────────────────
+function initScrollProgress() {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = pct + '%';
+  }, { passive: true });
+}
+
+// ── GALLERY ──────────────────────────────────
 let galIndex = 0;
 const VISIBLE = 3;
 
@@ -62,7 +73,7 @@ function slideGallery(dir) {
   updateSlider();
 }
 
-// ── LIGHTBOX ────────────────────────────────
+// ── LIGHTBOX ─────────────────────────────────
 let lbIndex = 0;
 
 function openLB(i) {
@@ -88,11 +99,11 @@ document.getElementById('lightbox').addEventListener('click', function(e) {
   if (e.target === this) closeLB();
 });
 
-// ── NAV ─────────────────────────────────────
+// ── NAV ──────────────────────────────────────
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   if (nav) nav.classList.toggle('solid', window.scrollY > 60);
-});
+}, { passive: true });
 
 function openD() {
   document.getElementById('drawer').classList.add('open');
@@ -103,7 +114,7 @@ function closeD() {
   document.body.style.overflow = '';
 }
 
-// ── SMOOTH SCROLL ───────────────────────────
+// ── SMOOTH SCROLL ────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const href = a.getAttribute('href');
@@ -113,13 +124,132 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ── FADE IN OBSERVER ─────────────────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: 0.07 });
-document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+// ── SECTION REVEAL (ZOOM EFFECT) ─────────────
+function initSectionReveal() {
+  const sections = document.querySelectorAll('.sec-reveal');
+  if (!sections.length) return;
 
-// ── ENQUIRY FORM ─────────────────────────────
+  const sObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('revealed');
+        sObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  sections.forEach(s => sObs.observe(s));
+}
+
+// ── FADE + ZOOM IN OBSERVER ───────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.07 });
+
+document.querySelectorAll('.fade, .zoom-img').forEach(el => observer.observe(el));
+
+// ── TESTIMONIALS AUTO SLIDER ──────────────────
+let testIndex = 0;
+let testTimer = null;
+
+function initTestSlider() {
+  const track = document.getElementById('testSlider');
+  if (!track) return;
+
+  const cards = track.querySelectorAll('.test-card-new');
+  const perView = window.innerWidth <= 900 ? 1 : 3;
+  const total = cards.length; // 4 cards
+  const maxIndex = total - perView; // desktop=1, mobile=3
+
+  testIndex = 0;
+
+  // Dots
+  const dots = document.getElementById('testDots');
+  if (dots) {
+    dots.innerHTML = '';
+    for (let i = 0; i <= maxIndex; i++) {
+      const d = document.createElement('div');
+      d.className = 'test-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => goToTest(i);
+      dots.appendChild(d);
+    }
+  }
+
+  resetTestTimer();
+  const wrap = document.querySelector('.test-outer');
+  if (wrap) {
+    wrap.addEventListener('mouseenter', () => clearInterval(testTimer));
+    wrap.addEventListener('mouseleave', resetTestTimer);
+  }
+}
+
+function goToTest(i) {
+  const track = document.getElementById('testSlider');
+  if (!track) return;
+  const cards = track.querySelectorAll('.test-card-new');
+  const perView = window.innerWidth <= 900 ? 1 : 3;
+  const maxIndex = cards.length - perView;
+
+  testIndex = Math.max(0, Math.min(i, maxIndex));
+
+  // Card width + margin
+  const card = cards[0];
+  const cardW = card.offsetWidth + 16;
+  track.style.transform = `translateX(-${testIndex * cardW}px)`;
+
+  document.querySelectorAll('.test-dot').forEach((d, idx) => d.classList.toggle('active', idx === testIndex));
+  resetTestTimer();
+}
+
+function moveTest(dir) {
+  const track = document.getElementById('testSlider');
+  if (!track) return;
+  const cards = track.querySelectorAll('.test-card-new');
+  const perView = window.innerWidth <= 900 ? 1 : 3;
+  const maxIndex = cards.length - perView;
+  const next = testIndex + dir;
+  if (next < 0) goToTest(maxIndex);
+  else if (next > maxIndex) goToTest(0);
+  else goToTest(next);
+}
+
+function resetTestTimer() {
+  clearInterval(testTimer);
+  testTimer = setInterval(() => moveTest(1), 4500);
+}
+
+// ── FACILITIES PARTICLES ──────────────────────
+function initFacParticles() {
+  const container = document.getElementById('facParticles');
+  if (!container) return;
+  const colors = ['rgba(245,166,35,', 'rgba(92,45,145,', 'rgba(233,30,140,'];
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'fac-particle';
+    const size = Math.random() * 6 + 3;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const opacity = Math.random() * 0.5 + 0.2;
+    const left = Math.random() * 100;
+    const delay = Math.random() * 8;
+    const duration = Math.random() * 6 + 6;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      background:${color}${opacity});
+      left:${left}%;
+      bottom:0;
+      animation-duration:${duration}s;
+      animation-delay:${delay}s;
+    `;
+    container.appendChild(p);
+  }
+}
+
+// ── ENQUIRY FORM ──────────────────────────────
 function sendEnquiryWA() {
   const pName = document.getElementById('pName').value.trim();
   const cName = document.getElementById('cName').value.trim();
@@ -170,7 +300,7 @@ function sendEnquiryEmail() {
   window.location.href = `mailto:fosterkidsbhirr@gmail.com?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
 }
 
-// ── TOAST ────────────────────────────────────
+// ── TOAST ─────────────────────────────────────
 function showToast(msg) {
   const t = document.getElementById('toast');
   if (!t) return;
@@ -179,23 +309,24 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-// ── LOADER HIDE ──────────────────────────────
+// ── LOADER HIDE ───────────────────────────────
 function hideLoader() {
   const loader = document.getElementById('loader');
   if (loader) loader.classList.add('gone');
 }
 
-// ── INIT ─────────────────────────────────────
+// ── INIT ──────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   buildGallery();
-  // Loader 1.5s baad hatega
+  initScrollProgress();
+  initSectionReveal();
+  initTestSlider();
+  initFacParticles();
   setTimeout(hideLoader, 1500);
 });
 
-// Fallback: kuch bhi ho 3s baad loader hatega
 window.addEventListener('load', () => {
   setTimeout(hideLoader, 1500);
 });
-
 
 
