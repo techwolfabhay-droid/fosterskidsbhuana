@@ -13,6 +13,19 @@ const GALLERY = [
   'images/gallery8.jpeg',
   'images/gallery9.jpeg',
   'images/gallery10.jpeg',
+   'images/gallery10.jpeg',
+   'images/gallery11.jpeg',
+   'images/gallery12.jpeg',
+   'images/gallery13.jpeg',
+   'images/gallery14.jpeg',
+   'images/gallery15.jpeg',
+   'images/gallery16.jpeg',
+   'images/gallery17.jpeg',
+   'images/gallery18.jpeg',
+   'images/gallery19.jpeg',
+   'images/gallery20.jpeg'
+   
+   
 ];
 
 // ── SCROLL PROGRESS BAR ──────────────────────
