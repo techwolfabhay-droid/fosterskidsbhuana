@@ -1,7 +1,7 @@
 /* ══════════════════════════════════════════
    FOSTER KIDS SCHOOL — script.js (Updated)
 ══════════════════════════════════════════ */
-
+ 
 const GALLERY = [
   'images/images/gallery1.jpeg',
   'images/images/gallery2.jpeg',
@@ -13,46 +13,43 @@ const GALLERY = [
   'images/images/gallery8.jpeg',
   'images/images/gallery9.jpeg',
   'images/images/gallery10.jpeg',
-   'images/images/gallery11.jpeg',
-   'images/images/gallery12.jpeg',
-   'images/images/gallery13.jpeg',
-   'images/images/gallery14.jpeg',
-   'images/images/gallery15.jpeg',
-   'images/images/gallery16.jpeg',
-   'images/images/gallery17.jpeg',
-   'images/images/gallery18.jpeg',
-   'images/images/gallery19.jpeg',
-   'images/images/gallery20.jpeg',
-   'images/images/gallery21.jpeg',
-   'images/images/gallery22.jpeg',
-    'images/images/gallery23.jpeg',
-    'images/images/gallery24.jpeg',
-    'images/images/gallery25.jpeg',
-    'images/images/gallery26.jpeg',
-    'images/images/gallery27.jpeg',
-    'images/images/gallery28.jpeg',
-    'images/images/gallery29.jpeg',
-    'images/images/gallery30.jpeg',
-    'images/images/gallery31.jpeg',
-    'images/images/gallery32.jpeg',
-    'images/images/gallery33.jpeg',
-    'images/images/gallery34.jpeg',
-    'images/images/gallery35.jpeg',
-    'images/images/gallery36.jpeg',
-    'images/images/gallery37.jpeg',
-    'images/images/gallery38.jpeg',
-    'images/images/gallery39.jpeg',
-    'images/images/gallery40.jpeg',
-    'images/images/gallery41.jpeg',
-    'images/images/gallery42.jpeg',
-    'images/images/gallery43.jpeg',
-    'images/images/gallery44.jpeg',
-    'images/images/gallery45.jpeg'
-   
-   
-   
+  'images/images/gallery11.jpeg',
+  'images/images/gallery12.jpeg',
+  'images/images/gallery13.jpeg',
+  'images/images/gallery14.jpeg',
+  'images/images/gallery15.jpeg',
+  'images/images/gallery16.jpeg',
+  'images/images/gallery17.jpeg',
+  'images/images/gallery18.jpeg',
+  'images/images/gallery19.jpeg',
+  'images/images/gallery20.jpeg',
+  'images/images/gallery21.jpeg',
+  'images/images/gallery22.jpeg',
+  'images/images/gallery23.jpeg',
+  'images/images/gallery24.jpeg',
+  'images/images/gallery25.jpeg',
+  'images/images/gallery26.jpeg',
+  'images/images/gallery27.jpeg',
+  'images/images/gallery28.jpeg',
+  'images/images/gallery29.jpeg',
+  'images/images/gallery30.jpeg',
+  'images/images/gallery31.jpeg',
+  'images/images/gallery32.jpeg',
+  'images/images/gallery33.jpeg',
+  'images/images/gallery34.jpeg',
+  'images/images/gallery35.jpeg',
+  'images/images/gallery36.jpeg',
+  'images/images/gallery37.jpeg',
+  'images/images/gallery38.jpeg',
+  'images/images/gallery39.jpeg',
+  'images/images/gallery40.jpeg',
+  'images/images/gallery41.jpeg',
+  'images/images/gallery42.jpeg',
+  'images/images/gallery43.jpeg',
+  'images/images/gallery44.jpeg',
+  'images/images/gallery45.jpeg'
 ];
-
+ 
 // ── SCROLL PROGRESS BAR ──────────────────────
 function initScrollProgress() {
   const bar = document.getElementById('scroll-progress');
@@ -64,19 +61,19 @@ function initScrollProgress() {
     bar.style.width = pct + '%';
   }, { passive: true });
 }
-
+ 
 // ── GALLERY ──────────────────────────────────
 let galIndex = 0;
 const VISIBLE = 3;
-
+ 
 function buildGallery() {
   const slider = document.getElementById('gallerySlider');
   const dots   = document.getElementById('galDots');
   if (!slider || !dots) return;
-
+ 
   slider.innerHTML = '';
   dots.innerHTML   = '';
-
+ 
   GALLERY.forEach((url, i) => {
     const div = document.createElement('div');
     div.className = 'gi';
@@ -84,7 +81,7 @@ function buildGallery() {
     div.onclick = () => openLB(i);
     slider.appendChild(div);
   });
-
+ 
   const totalDots = Math.max(1, GALLERY.length - VISIBLE + 1);
   for (let i = 0; i < totalDots; i++) {
     const d = document.createElement('div');
@@ -94,7 +91,7 @@ function buildGallery() {
   }
   updateSlider();
 }
-
+ 
 function updateSlider() {
   const slider = document.getElementById('gallerySlider');
   if (!slider) return;
@@ -104,16 +101,16 @@ function updateSlider() {
   slider.scrollTo({ left: galIndex * w, behavior: 'smooth' });
   document.querySelectorAll('.gal-dot').forEach((d, i) => d.classList.toggle('active', i === galIndex));
 }
-
+ 
 function slideGallery(dir) {
   const max = Math.max(0, GALLERY.length - VISIBLE);
   galIndex = Math.min(max, Math.max(0, galIndex + dir));
   updateSlider();
 }
-
+ 
 // ── LIGHTBOX ─────────────────────────────────
 let lbIndex = 0;
-
+ 
 function openLB(i) {
   lbIndex = i;
   const img = document.getElementById('lbImg');
@@ -121,28 +118,28 @@ function openLB(i) {
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
+ 
 function closeLB() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
 }
-
+ 
 function lbNav(dir) {
   lbIndex = (lbIndex + dir + GALLERY.length) % GALLERY.length;
   const img = document.getElementById('lbImg');
   if (img) img.src = GALLERY[lbIndex];
 }
-
+ 
 document.getElementById('lightbox').addEventListener('click', function(e) {
   if (e.target === this) closeLB();
 });
-
+ 
 // ── NAV ──────────────────────────────────────
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   if (nav) nav.classList.toggle('solid', window.scrollY > 60);
 }, { passive: true });
-
+ 
 function openD() {
   document.getElementById('drawer').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -151,7 +148,7 @@ function closeD() {
   document.getElementById('drawer').classList.remove('open');
   document.body.style.overflow = '';
 }
-
+ 
 // ── SMOOTH SCROLL ────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
@@ -161,12 +158,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
-
+ 
 // ── SECTION REVEAL (ZOOM EFFECT) ─────────────
 function initSectionReveal() {
   const sections = document.querySelectorAll('.sec-reveal');
   if (!sections.length) return;
-
+ 
   const sObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -175,10 +172,10 @@ function initSectionReveal() {
       }
     });
   }, { threshold: 0.05 });
-
+ 
   sections.forEach(s => sObs.observe(s));
 }
-
+ 
 // ── FADE + ZOOM IN OBSERVER ───────────────────
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -188,24 +185,24 @@ const observer = new IntersectionObserver(entries => {
     }
   });
 }, { threshold: 0.07 });
-
+ 
 document.querySelectorAll('.fade, .zoom-img').forEach(el => observer.observe(el));
-
+ 
 // ── TESTIMONIALS AUTO SLIDER ──────────────────
 let testIndex = 0;
 let testTimer = null;
-
+ 
 function initTestSlider() {
   const track = document.getElementById('testSlider');
   if (!track) return;
-
+ 
   const cards = track.querySelectorAll('.test-card-new');
   const perView = window.innerWidth <= 900 ? 1 : 3;
   const total = cards.length; // 4 cards
   const maxIndex = total - perView; // desktop=1, mobile=3
-
+ 
   testIndex = 0;
-
+ 
   // Dots
   const dots = document.getElementById('testDots');
   if (dots) {
@@ -217,7 +214,7 @@ function initTestSlider() {
       dots.appendChild(d);
     }
   }
-
+ 
   resetTestTimer();
   const wrap = document.querySelector('.test-outer');
   if (wrap) {
@@ -225,25 +222,31 @@ function initTestSlider() {
     wrap.addEventListener('mouseleave', resetTestTimer);
   }
 }
-
+ 
 function goToTest(i) {
   const track = document.getElementById('testSlider');
   if (!track) return;
   const cards = track.querySelectorAll('.test-card-new');
-  const perView = window.innerWidth <= 900 ? 1 : 3;
+  const isMobile = window.innerWidth <= 900;
+  const perView = isMobile ? 1 : 3;
   const maxIndex = cards.length - perView;
-
+ 
   testIndex = Math.max(0, Math.min(i, maxIndex));
-
-  // Card width + margin
-  const card = cards[0];
-  const cardW = card.offsetWidth + 16;
-  track.style.transform = `translateX(-${testIndex * cardW}px)`;
-
+ 
+  if (isMobile) {
+    // Mobile: percentage based — each card is 100% width
+    track.style.transform = `translateX(-${testIndex * 100}%)`;
+  } else {
+    // Desktop: pixel based
+    const card = cards[0];
+    const cardW = card.offsetWidth + 16;
+    track.style.transform = `translateX(-${testIndex * cardW}px)`;
+  }
+ 
   document.querySelectorAll('.test-dot').forEach((d, idx) => d.classList.toggle('active', idx === testIndex));
   resetTestTimer();
 }
-
+ 
 function moveTest(dir) {
   const track = document.getElementById('testSlider');
   if (!track) return;
@@ -255,12 +258,12 @@ function moveTest(dir) {
   else if (next > maxIndex) goToTest(0);
   else goToTest(next);
 }
-
+ 
 function resetTestTimer() {
   clearInterval(testTimer);
   testTimer = setInterval(() => moveTest(1), 4500);
 }
-
+ 
 // ── FACILITIES PARTICLES ──────────────────────
 function initFacParticles() {
   const container = document.getElementById('facParticles');
@@ -286,7 +289,7 @@ function initFacParticles() {
     container.appendChild(p);
   }
 }
-
+ 
 // ── ENQUIRY FORM ──────────────────────────────
 function sendEnquiryWA() {
   const pName = document.getElementById('pName').value.trim();
@@ -295,12 +298,12 @@ function sendEnquiryWA() {
   const grade = document.getElementById('grade').value;
   const age   = document.getElementById('age').value;
   const msg   = document.getElementById('msg').value.trim();
-
+ 
   if (!pName || !phone || !grade) {
     alert('Please fill in Parent Name, Phone Number and Program.');
     return;
   }
-
+ 
   const text =
     `*Admission Enquiry — Foster School, Bhirr, Buhana*\n\n` +
     `*Parent Name:* ${pName}\n` +
@@ -310,10 +313,10 @@ function sendEnquiryWA() {
     (age ? `*Child Age:* ${age}\n` : '') +
     (msg ? `*Message:* ${msg}\n` : '') +
     `\nKindly contact us at the earliest. Thank you!`;
-
+ 
   window.open(`https://wa.me/919729313222?text=${encodeURIComponent(text)}`, '_blank');
 }
-
+ 
 function sendEnquiryEmail() {
   const pName = document.getElementById('pName').value.trim();
   const cName = document.getElementById('cName').value.trim();
@@ -321,12 +324,12 @@ function sendEnquiryEmail() {
   const grade = document.getElementById('grade').value;
   const age   = document.getElementById('age').value;
   const msg   = document.getElementById('msg').value.trim();
-
+ 
   if (!pName || !phone || !grade) {
     alert('Please fill in Parent Name, Phone Number and Program.');
     return;
   }
-
+ 
   const sub  = `Admission Enquiry — ${grade} | Foster School, Bhirr`;
   const body =
     `Dear FosterKids Team,\n\nAdmission enquiry details:\n\n` +
@@ -334,10 +337,10 @@ function sendEnquiryEmail() {
     (age ? `Age: ${age}\n` : '') +
     (msg ? `\nMessage: ${msg}\n` : '') +
     `\nThank you!`;
-
+ 
   window.location.href = `mailto:fosterkidsbhirr@gmail.com?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
 }
-
+ 
 // ── TOAST ─────────────────────────────────────
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -346,13 +349,13 @@ function showToast(msg) {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2800);
 }
-
+ 
 // ── LOADER HIDE ───────────────────────────────
 function hideLoader() {
   const loader = document.getElementById('loader');
   if (loader) loader.classList.add('gone');
 }
-
+ 
 // ── INIT ──────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   buildGallery();
@@ -362,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFacParticles();
   setTimeout(hideLoader, 1500);
 });
-
+ 
 window.addEventListener('load', () => {
   setTimeout(hideLoader, 1500);
 });
