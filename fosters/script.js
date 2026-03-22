@@ -338,7 +338,13 @@ function sendEnquiryEmail() {
     (msg ? `\nMessage: ${msg}\n` : '') +
     `\nThank you!`;
  
-  window.location.href = `mailto:fosterkidsbhirr@gmail.com?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&to=fosterkidsbhirr@gmail.com&su=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+const mailtoUrl = `mailto:fosterkidsbhirr@gmail.com?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+if (/Mobi|Android/i.test(navigator.userAgent)) {
+  window.location.href = mailtoUrl;
+} else {
+  window.open(gmailUrl, '_blank');
+}
 }
  
 // ── TOAST ─────────────────────────────────────
