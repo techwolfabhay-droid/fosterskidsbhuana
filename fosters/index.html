@@ -10,6 +10,9 @@
 </head>
 <body>
 
+<!-- SCROLL PROGRESS BAR -->
+<div id="scroll-progress"></div>
+
 <!-- LOADER -->
 <div id="loader">
   <div class="ld-inner">
@@ -42,6 +45,7 @@
   <div class="d-brand">Foster<span>Kids</span></div>
   <a class="dlink" href="#about" onclick="closeD()"><i class="fa-solid fa-school"></i> About</a>
   <a class="dlink" href="#programs" onclick="closeD()"><i class="fa-solid fa-star"></i> Programs</a>
+  <a class="dlink" href="#nep" onclick="closeD()"><i class="fa-solid fa-book-open"></i> NEP 2020</a>
   <a class="dlink" href="#recognition" onclick="closeD()"><i class="fa-solid fa-award"></i> Recognition</a>
   <a class="dlink" href="#founder" onclick="closeD()"><i class="fa-solid fa-crown"></i> Founder</a>
   <a class="dlink" href="#admissions" onclick="closeD()"><i class="fa-solid fa-door-open"></i> Admissions</a>
@@ -63,6 +67,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#programs">Programs</a></li>
+    <li><a href="#nep">NEP 2020</a></li>
     <li><a href="#recognition">Recognition</a></li>
     <li><a href="#founder">Founder</a></li>
     <li><a href="#admissions">Admissions</a></li>
@@ -116,11 +121,11 @@
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="sec bg-white">
+<section id="about" class="sec bg-white sec-reveal">
   <div class="sec-lbl purple-lbl"><i class="fa-solid fa-school"></i> About FosterKids</div>
   <h2 class="sec-title">Foster School — Bhirr, Buhana's <span class="c-purple">Most Trusted School</span></h2>
   <div class="about-grid">
-    <div class="about-imgs fade">
+    <div class="about-imgs fade zoom-img">
       <div class="ai-main"><img src="images/about1.jpeg" alt="School"/></div>
       <div class="ai-sub"><img src="images/about2.jpeg" alt="Students"/></div>
       <div class="ai-badge"><div class="aib-n">15+</div><div class="aib-l">Years of<br/>Excellence</div></div>
@@ -128,7 +133,7 @@
     <div class="about-content">
       <p class="abt-p fade">Foster School is a premium early childhood education institution in Bhirr, Tehsil Buhana, Jhunjhunu, Rajasthan. We nurture every child's natural love for learning through activity-based, play-centred education.</p>
       <p class="abt-p fade">Our expert educators, child-friendly infrastructure and warm family atmosphere make FosterKids the top choice for parents in Bhirr, Buhana and Jhunjhunu.To nurture young minds with quality education, strong values, and creativity, empowering every child to become a confident, responsible, and successful individual in life."</p>
-      <p class="abt-p fade">Foster Kids School is committed to providing a strong foundation for young learners. We believe that every child is unique and full of potential. Our focus is on holistic development—combining education, discipline, creativity, and moral values to shape a better future. With a child-friendly environment and dedicated teachers, we ensure that learning becomes a joyful experience for every child."</p>
+      <p class="abt-p fade">Foster Kids School is committed to providing a strong foundation for young learners. We believe that every child is unique and full of potential. Our focus is on holistic development—combining education, discipline, creativity, and moral values to shape a better future.</p>
       <div class="pills fade">
         <span class="pill p1">🎈 Play Group</span>
         <span class="pill p2">🌸 Nursery</span>
@@ -158,55 +163,90 @@
 </section>
 
 <!-- PROGRAMS -->
-<section id="programs" class="sec bg-purple">
+<section id="programs" class="sec bg-purple sec-reveal">
   <h2 class="sec-title light" style="text-align:center;">Learning Programs at <span class="c-gold">FosterKids</span> 🎒</h2>
   <p style="text-align:center;color:rgba(255,255,255,.55);font-size:15px;margin:10px auto 44px;max-width:500px;">Every program is crafted for tiny learners — joyful, activity-based and age-appropriate.</p>
   <div class="prog-grid">
+
     <div class="prog-card fade">
-      <div class="prog-emoji"></div>
       <div class="prog-img"><img src="images/playgroupsnarrow.jpg" alt="Play Group"/></div>
       <div class="prog-body">
-        <div class="prog-name">Play Group</div>
-        <p class="prog-desc">Fun-filled first steps into school life through games, songs and creative play activities. Our Play Group program focuses on nurturing new skills</p>
+        <div class="prog-name">🎈 Play Group</div>
+        <ul class="prog-points">
+          <li>Fun-filled first steps into school life</li>
+          <li>Games, songs and creative play activities</li>
+          <li>Builds social skills and confidence</li>
+          <li>Nurtures curiosity and exploration</li>
+        </ul>
         <div class="prog-age"><i class="fa-solid fa-child"></i> Age 1.5 – 2.5 Years</div>
       </div>
     </div>
+
     <div class="prog-card fade">
-      <div class="prog-emoji"></div>
       <div class="prog-img"><img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=500&q=80" alt="Nursery"/></div>
       <div class="prog-body">
-        <div class="prog-name">Nursery</div>
-        <p class="prog-desc">Gentle, nurturing introduction through sensory play, stories and creative activities. Our Nursery program is a unique blend of essential skills.</p>
+        <div class="prog-name">🌸 Nursery</div>
+        <ul class="prog-points">
+          <li>Gentle, nurturing introduction to learning</li>
+          <li>Sensory play, stories and creative activities</li>
+          <li>Develops emotional and social skills</li>
+          <li>Unique blend of essential early skills</li>
+        </ul>
         <div class="prog-age"><i class="fa-solid fa-child"></i> Age 2.5 – 3.5 Years</div>
       </div>
     </div>
+
     <div class="prog-card fade">
-      <div class="prog-emoji"></div>
       <div class="prog-img"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&q=80" alt="LKG"/></div>
       <div class="prog-body">
-        <div class="prog-name">LKG</div>
-        <p class="prog-desc">Building early literacy, numeracy and social skills in a fun, loving environment. In the Fostering Kid Program, emphasis is laid on.</p>
+        <div class="prog-name">📖 LKG</div>
+        <ul class="prog-points">
+          <li>Early literacy and numeracy foundations</li>
+          <li>Fun, activity-based learning approach</li>
+          <li>Language development and storytelling</li>
+          <li>Builds social skills in loving environment</li>
+        </ul>
         <div class="prog-age"><i class="fa-solid fa-child"></i> Age 3.5 – 4.5 Years</div>
       </div>
     </div>
+
     <div class="prog-card fade">
-      <div class="prog-emoji"></div>
       <div class="prog-img"><img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=500&q=80" alt="UKG"/></div>
       <div class="prog-body">
-        <div class="prog-name">UKG</div>
-        <p class="prog-desc">Strengthening foundational skills in language, math and creative thinking for primary school. In the Fostering Younger Program, emphasis is laid on building.</p>
+        <div class="prog-name">✏️ UKG</div>
+        <ul class="prog-points">
+          <li>Strengthens language and math skills</li>
+          <li>Creative thinking and problem solving</li>
+          <li>Primary school readiness preparation</li>
+          <li>Builds confidence and independence</li>
+        </ul>
         <div class="prog-age"><i class="fa-solid fa-child"></i> Age 4.5 – 5.5 Years</div>
       </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEP 2020 — NEW SECTION -->
+<section id="nep" class="sec bg-white sec-reveal">
+  <div class="nep-simple-wrap">
+    <div class="nep-simple-inner fade">
+      <div class="nep-simple-tag"><i class="fa-solid fa-book-open"></i> NEP 2020</div>
+      <h2 class="nep-simple-title">Foster Kids Play School: Aligned with NEP 2020 for Holistic Early Learning</h2>
+      <p class="nep-simple-p">Foster Kids, one of India's No.1 play school brands, has thoughtfully designed its curriculum in complete alignment with the National Education Policy (NEP) 2020. The policy emphasizes the Foundational Stage (ages 3–8) as the most critical phase of a child's development, and Foster Kids has seamlessly integrated these principles into its teaching-learning practices.</p>
+      <p class="nep-simple-p">Our curriculum focuses on experiential, play-based, and activity-driven learning, encouraging curiosity, creativity, and problem-solving skills among young learners. It blends art, music, movement, storytelling, and hands-on exploration to make learning joyful and meaningful. The program also nurtures essential early literacy, numeracy, and socio-emotional skills in a stress-free environment.</p>
+      <p class="nep-simple-p">In accordance with NEP 2020, Foster Kids promotes multilingual exposure, inclusivity, and the integration of Indian values with global perspectives. Teachers are trained to create a flexible, child-centred classroom where every child learns at their own pace.</p>
+      <p class="nep-simple-p">Through this NEP-aligned approach, Foster Kids ensures that children receive a strong foundation for lifelong learning, preparing them for future academic success while fostering confidence, empathy, and independence. Foster Kids truly represents the spirit of NEP 2020 — education rooted in play, growth, and joyful discovery.</p>
     </div>
   </div>
 </section>
 
 <!-- RECOGNITION -->
-<section id="recognition" class="sec bg-cream">
+<section id="recognition" class="sec bg-cream sec-reveal">
   <div class="sec-lbl gold-lbl"><i class="fa-solid fa-award"></i> Government Recognised</div>
   <h2 class="sec-title">Officially <span class="c-gold">Recognised</span> by Govt. of India 🏆</h2>
   <div class="recog-grid">
-    <div class="recog-left fade">
+    <div class="recog-left fade zoom-img">
       <div class="cert-img-wrap">
         <img src="images/certificate.jpg" alt="Government Certificate" class="cert-img"/>
       </div>
@@ -214,8 +254,8 @@
     </div>
     <div class="recog-right fade">
       <div class="recog-top-badge">🎓 First School Using Multiple Intelligence Enabled Curriculum</div>
-      <h3 class="recog-h3">Foster Kids School Creates History —<br/><span style="color:#8B6000;">A Moment of Pride for Buhana & Pacheri Region</span></h3>
-      <p class="recog-desc"><strong>On behalf of the Ministry of Education, Government of India </strong> <strong> Kids School, Bhirr, Buhana has been officially recognised under the Government Recognised VENTEL Action Plan. Recognised by MGNCRE (Mahatma Gandhi National Council of Rural Education), Government of India."</strong>.</p>
+      <h3 class="recog-h3">Foster Kids School Creates History —<br/><span style="color:#8B6000;">A Moment of Pride for Buhana &amp; Pacheri Region</span></h3>
+      <p class="recog-desc"><strong>On behalf of the Ministry of Education, Government of India</strong> — <strong>Foster Kids School, Bhirr, Buhana has been officially recognised under the Government Recognised VENTEL Action Plan. Recognised by MGNCRE (Mahatma Gandhi National Council of Rural Education), Government of India.</strong></p>
       <div class="recog-points">
         <div class="rp"><span class="rp-ico">✅</span><span><strong>Value Education</strong> — Productive Work with Economic Value</span></div>
         <div class="rp"><span class="rp-ico">✅</span><span><strong>Experiential Learning</strong> — Activity-based classroom approach</span></div>
@@ -240,12 +280,11 @@
 </section>
 
 <!-- FOUNDER -->
-<section id="founder" class="sec bg-soft">
+<section id="founder" class="sec bg-soft sec-reveal">
   <div class="sec-lbl purple-lbl"><i class="fa-solid fa-crown"></i> Founder &amp; Owner</div>
   <h2 class="sec-title">The People Behind <span class="c-purple">FosterKids</span> 👑</h2>
   <p style="font-size:15px;color:var(--gray);margin:8px 0 48px;line-height:1.8;">Foster Kids School Bhirr is built on the vision of two people — one who dreamed it, and one who made it a reality in their community</p>
 
-  <!-- PERSON 1: FOUNDER -->
   <div class="person-row fade">
     <div class="person-row-photo">
       <div class="pr-photo-wrap founder-border">
@@ -258,40 +297,35 @@
       <div class="prc-name">Mr. Umesh Chaudhary</div>
       <div class="prc-role">Founder &amp; Director · Foster Kids School Chain</div>
       <div class="prc-divider"></div>
-      <p class="prc-msg">"Foster Kids envisions optimizing the hidden potential of kids across the nation. We create global citizens with deep rooted Indian values so as to contribute their share to the society when they grow up. To nurture & develop innate power and talent of every student from all backgrounds to serve our glorious country. Our teachers are trained to work upon established norms of early childhood education with due care. At the same time, they are conditioned to keep in mind the commitment towards academic excellence, moral values, character building and spiritual growth of the child."</p>
+      <p class="prc-msg">"Foster Kids envisions optimizing the hidden potential of kids across the nation. We create global citizens with deep rooted Indian values so as to contribute their share to the society when they grow up. To nurture &amp; develop innate power and talent of every student from all backgrounds to serve our glorious country. Our teachers are trained to work upon established norms of early childhood education with due care. At the same time, they are conditioned to keep in mind the commitment towards academic excellence, moral values, character building and spiritual growth of the child."</p>
       <div class="prc-sign">Mr. Umesh Chaudhary</div>
       <div class="prc-sign-sub">Passionate about Early Childhood Education</div>
     </div>
   </div>
 
-  <!-- DIVIDER -->
   <div class="person-sep"></div>
 
-  <!-- PERSON 2: OWNER -->
   <div class="person-row fade">
     <div class="person-row-photo">
       <div class="pr-photo-wrap owner-border">
-        <!--OWNER PHOTO: src="images/owner.jpeg"-->
         <img src="images/founder.jpeg" alt="Owner" class="pr-photo"/>
       </div>
       <div class="pr-badge owner-clr">School Owner</div>
     </div>
     <div class="person-row-content">
       <div class="prc-tag owner-tag">Foster Kids School, Bhirr, Buhana, Pacheri — Owner</div>
-      <div class="prc-name">Mr.  Naresh Yadav</div>
+      <div class="prc-name">Mr. Naresh Yadav</div>
       <div class="prc-role">School Owner &amp; Franchise Partner · Bhirr, Buhana, Pacheri</div>
       <div class="prc-divider"></div>
-      <p class="prc-msg">"Our children deserve the best education — with this belief, we took the Foster Kids franchise. The trust of parents from Bhirr and Buhana is our greatest strength. Today, our children are learning with a world-class curriculum, and that is our biggest pride. Our mission is to provide a safe, caring, and engaging learning environment where children develop academically, socially, and emotionally, guided by experienced educators and modern teaching methods.To nurture young minds with quality education, strong values, and creativity, empowering every child to become a confident, responsible, and successful individual in life."</p>
-      <div class="prc-sign">Mr.  Naresh Yadav</div>
+      <p class="prc-msg">"Our children deserve the best education — with this belief, we took the Foster Kids franchise. The trust of parents from Bhirr and Buhana is our greatest strength. Today, our children are learning with a world-class curriculum, and that is our biggest pride. Our mission is to provide a safe, caring, and engaging learning environment where children develop academically, socially, and emotionally, guided by experienced educators and modern teaching methods. To nurture young minds with quality education, strong values, and creativity, empowering every child to become a confident, responsible, and successful individual in life."</p>
+      <div class="prc-sign">Mr. Naresh Yadav</div>
       <div class="prc-sign-sub">Foster Kids Franchise Partner · Bhirr, Buhana, Pacheri</div>
     </div>
   </div>
-
 </section>
 
-
 <!-- ADMISSIONS -->
-<section id="admissions" class="sec bg-white">
+<section id="admissions" class="sec bg-white sec-reveal">
   <div class="adm-banner fade">
     <div>
       <div class="adm-b-title">🎒 Admissions Open — Academic Year 2026–27</div>
@@ -336,7 +370,7 @@
 </section>
 
 <!-- GALLERY -->
-<section id="gallery" class="sec bg-soft">
+<section id="gallery" class="sec bg-soft sec-reveal">
   <div class="gal-top">
     <div>
       <div class="sec-lbl green-lbl"><i class="fa-solid fa-images"></i> School Life</div>
@@ -360,39 +394,40 @@
 </section>
 
 <!-- FACILITIES -->
-<section id="facilities" class="sec bg-dark">
+<section id="facilities" class="sec bg-dark sec-reveal">
+  <div class="fac-particles" id="facParticles"></div>
   <h2 class="sec-title light" style="text-align:center;">Features &amp; <span class="c-gold">Facilities</span> 🏫</h2>
   <p style="text-align:center;color:rgba(255,255,255,.45);font-size:15px;margin:10px auto 48px;max-width:520px;">World-class facilities in Bhirr, Buhana, Pacheri, Jhunjhunu — designed for safe, joyful and holistic learning.</p>
   <div class="fac-two">
     <div class="fac-col fade">
       <div class="fac-col-hd"><i class="fa-solid fa-star"></i> Main Features</div>
       <div class="fac-list">
-        <div class="fac-item"><span class="fi-n fp">1</span><span class="fi-t">Fully A.C Campus</span></div>
-        <div class="fac-item"><span class="fi-n fp">2</span><span class="fi-t">CCTV Security System Enabled School</span></div>
-        <div class="fac-item"><span class="fi-n fp">3</span><span class="fi-t">Truly English Medium</span></div>
-        <div class="fac-item"><span class="fi-n fp">4</span><span class="fi-t">Advance Teaching Aids &amp; Play Tools</span></div>
-        <div class="fac-item"><span class="fi-n fp">5</span><span class="fi-t">Technology Integrated Learning</span></div>
-        <div class="fac-item"><span class="fi-n fp">6</span><span class="fi-t">Curriculum Designed by Subject Specialists</span></div>
-        <div class="fac-item"><span class="fi-n fp">7</span><span class="fi-t">Transport Facilities On All Routes</span></div>
+        <div class="fac-item"><span class="fi-n fp">1</span><span class="fi-t">Fully A.C Campus</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fp">2</span><span class="fi-t">CCTV Security System Enabled School</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fp">3</span><span class="fi-t">Truly English Medium</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fp">4</span><span class="fi-t">Advance Teaching Aids &amp; Play Tools</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fp">5</span><span class="fi-t">Technology Integrated Learning</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fp">6</span><span class="fi-t">Curriculum Designed by Subject Specialists</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fp">7</span><span class="fi-t">Transport Facilities On All Routes</span><span class="fi-glow"></span></div>
       </div>
     </div>
     <div class="fac-col fade">
       <div class="fac-col-hd"><i class="fa-solid fa-sparkles"></i> Other Facilities</div>
       <div class="fac-list">
-        <div class="fac-item"><span class="fi-n fk">1</span><span class="fi-t">Stage Performance</span></div>
-        <div class="fac-item"><span class="fi-n fk">2</span><span class="fi-t">Activity Arcade</span></div>
-        <div class="fac-item"><span class="fi-n fk">3</span><span class="fi-t">Learn by Fun</span></div>
-        <div class="fac-item"><span class="fi-n fk">4</span><span class="fi-t">Dance Classes</span></div>
-        <div class="fac-item"><span class="fi-n fk">5</span><span class="fi-t">National / Traditional Festival Celebrations</span></div>
-        <div class="fac-item"><span class="fi-n fk">6</span><span class="fi-t">Develop Good Manners &amp; Habits</span></div>
-        <div class="fac-item"><span class="fi-n fk">7</span><span class="fi-t">Outdoor Games — Play Tools</span></div>
+        <div class="fac-item"><span class="fi-n fk">1</span><span class="fi-t">Stage Performance</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fk">2</span><span class="fi-t">Activity Arcade</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fk">3</span><span class="fi-t">Learn by Fun</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fk">4</span><span class="fi-t">Dance Classes</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fk">5</span><span class="fi-t">National / Traditional Festival Celebrations</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fk">6</span><span class="fi-t">Develop Good Manners &amp; Habits</span><span class="fi-glow"></span></div>
+        <div class="fac-item"><span class="fi-n fk">7</span><span class="fi-t">Outdoor Games — Play Tools</span><span class="fi-glow"></span></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- LOCATION -->
-<section id="location" class="sec bg-white">
+<section id="location" class="sec bg-white sec-reveal">
   <div class="sec-lbl gold-lbl"><i class="fa-solid fa-location-dot"></i> Find Us</div>
   <h2 class="sec-title">Visit <span class="c-gold">FosterKids</span>, Bhirr 📍</h2>
   <div class="loc-grid">
@@ -422,36 +457,42 @@
 </section>
 
 <!-- TESTIMONIALS -->
-<section id="testimonials" class="sec bg-soft">
+<section id="testimonials" class="sec bg-soft sec-reveal">
   <div class="sec-lbl purple-lbl" style="justify-content:center;display:flex;margin:0 auto 14px;"><i class="fa-solid fa-heart"></i> Parent Reviews</div>
   <h2 class="sec-title" style="text-align:center;">What <span class="c-purple">Parents</span> Say 💬</h2>
-  <div class="test-grid">
-    <div class="test-card fade">
-      <div class="test-q">"</div>
-      <div class="test-stars">⭐⭐⭐⭐⭐</div>
-      <p class="test-txt">"My daughter used to cry before school — now she wakes up excited every morning! FosterKids has transformed her confidence completely. The teachers are incredibly patient and caring."</p>
-      <div class="test-auth"><div class="test-av"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80" alt="Parent"/></div><div><div class="test-name">Ashish Sharma</div><div class="test-role">Parent · Pacheri(Daughter)</div></div></div>
+  <div class="test-outer fade">
+    <button class="test-nav-btn" onclick="moveTest(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="test-viewport">
+      <div class="test-track" id="testSlider">
+        <div class="test-card-new">
+          <div class="test-q">"</div>
+          <div class="test-stars">⭐⭐⭐⭐⭐</div>
+          <p class="test-txt">"My daughter used to cry before school — now she wakes up excited every morning! FosterKids has transformed her confidence. The teachers are incredibly patient and caring."</p>
+          <div class="test-auth"><div class="test-av"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80" alt=""/></div><div><div class="test-name">Ashish Sharma</div><div class="test-role">Parent · Pacheri (Daughter)</div></div></div>
+        </div>
+        <div class="test-card-new">
+          <div class="test-q">"</div>
+          <div class="test-stars">⭐⭐⭐⭐⭐</div>
+          <p class="test-txt">"Best school in Bhirr — no question. The founder personally knows every child by name. My son has developed so much in just a few months here!"</p>
+          <div class="test-auth"><div class="test-av"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt=""/></div><div><div class="test-name">Sanjay Yadav</div><div class="test-role">Parent · Shed (Son)</div></div></div>
+        </div>
+        <div class="test-card-new">
+          <div class="test-q">"</div>
+          <div class="test-stars">⭐⭐⭐⭐⭐</div>
+          <p class="test-txt">"We receive WhatsApp photos every day — that kind of transparency is rare. The activities keep him happy and growing. FosterKids is wonderful!"</p>
+          <div class="test-auth"><div class="test-av"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80" alt=""/></div><div><div class="test-name">Pradeep</div><div class="test-role">Parent · Bhuana (Daughter)</div></div></div>
+        </div>
+        <div class="test-card-new">
+          <div class="test-q">"</div>
+          <div class="test-stars">⭐⭐⭐⭐⭐</div>
+          <p class="test-txt">"Excellent Play School, best teaching technique. Staff are very cooperative and helpful. Highly recommend to every parent in Buhana region!"</p>
+          <div class="test-auth"><div class="test-av"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80" alt=""/></div><div><div class="test-name">Vishwas</div><div class="test-role">Parent · Meghpur (Son)</div></div></div>
+        </div>
+      </div>
     </div>
-    <div class="test-card fade">
-      <div class="test-q">"</div>
-      <div class="test-stars">⭐⭐⭐⭐⭐</div>
-      <p class="test-txt">"Best school in Bhirr — no question. The founder personally knows every child by name. My son has developed so much in just a few months here!"</p>
-      <div class="test-auth"><div class="test-av"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt="Parent"/></div><div><div class="test-name">Sanjay Yadav</div><div class="test-role">Parent · Shed(Son)</div></div></div>
-    </div>
-    <div class="test-card fade">
-      <div class="test-q">"</div>
-      <div class="test-stars">⭐⭐⭐⭐⭐</div>
-      <p class="test-txt">"We receive WhatsApp photos every day — that kind of transparency is rare. The activities and learning approach keep him happy and growing. FosterKids is wonderful!"</p>
-      <div class="test-auth"><div class="test-av"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80" alt="Parent"/></div><div><div class="test-name">Pradeep</div><div class="test-role">Parent · Bhuana(Daughter)</div></div></div>
-    </div>
-  
-  <div class="test-card fade">
-      <div class="test-q">"</div>
-      <div class="test-stars">⭐⭐⭐⭐⭐</div>
-      <p class="test-txt">"Excellent Play School best teaching technique. Staff are very cooperative and helpful."</p>
-      <div class="test-auth"><div class="test-av"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80" alt="Parent"/></div><div><div class="test-name">Vishwas</div><div class="test-role">Parent · Meghpur(Son)</div></div></div>
-    </div>
+    <button class="test-nav-btn" onclick="moveTest(1)"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
+  <div class="test-dots" id="testDots"></div>
 </section>
 
 <!-- FOOTER -->
@@ -472,7 +513,7 @@
       </div>
     </div>
     <div class="ft-col"><h4>Programs</h4><a href="#programs">Play Group</a><a href="#programs">Nursery</a><a href="#programs">LKG</a><a href="#programs">UKG</a></div>
-    <div class="ft-col"><h4>Quick Links</h4><a href="#about">About School</a><a href="#recognition">Recognition</a><a href="#founder">Founder</a><a href="#admissions">Admissions</a><a href="#gallery">Gallery</a><a href="#facilities">Facilities</a><a href="#location">Location</a></div>
+    <div class="ft-col"><h4>Quick Links</h4><a href="#about">About School</a><a href="#nep">NEP 2020</a><a href="#recognition">Recognition</a><a href="#founder">Founder</a><a href="#admissions">Admissions</a><a href="#gallery">Gallery</a><a href="#location">Location</a></div>
     <div class="ft-col"><h4>Contact</h4><a href="tel:+919729313222">+91 9729313222</a><a href="https://wa.me/919729313222">WhatsApp</a><a href="https://www.instagram.com/fosterkidsbuhana?igsh=MXd5NngyOW13bnI5Ng==" target="_blank">@fosterkidsbuhana</a><a href="mailto:fosterkidsbhirr@gmail.com">fosterkidsbhirr@gmail.com</a><p>VPO Bhirr, Tehsil Buhana,<br/>Jhunjhunu, Raj. - 333515</p></div>
   </div>
   <div class="ft-bot"><span>© 2026 Foster School, Bhirr, Buhana. All Rights Reserved.</span><span>🌟 Building brighter futures in Bhirr, Buhana, Jhunjhunu</span></div>
