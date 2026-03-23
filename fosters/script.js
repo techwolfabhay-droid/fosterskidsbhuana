@@ -9,7 +9,7 @@ const GALLERY = [
   'images/images/gallery4.jpeg',
   'images/images/gallery5.jpeg',
   'images/images/gallery6.jpeg',
-  'images/images/gallery7.jpeg',
+  'images/images/gallerys7.jpeg',
   'images/images/gallery8.jpeg',
   'images/images/gallery9.jpeg',
   'images/images/gallery10.jpeg',
@@ -45,9 +45,9 @@ const GALLERY = [
   'images/images/gallery40.jpeg',
   'images/images/gallery41.jpeg',
   'images/images/gallery42.jpeg',
-  'images/images/gallery43.jpeg',
-  'images/images/gallery44.jpeg',
-  'images/images/gallery45.jpeg'
+  'images/images/gallerys43.jpeg',
+  'images/images/gallerys44.jpeg',
+  'images/images/gallerys45.jpeg'
 ];
  
 // ── SCROLL PROGRESS BAR ──────────────────────
