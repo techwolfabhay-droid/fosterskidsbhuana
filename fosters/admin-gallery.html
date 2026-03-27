@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel – School Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-light: #818cf8;
+      --accent: #f59e0b;
+      --danger: #ef4444;
+      --danger-light: #fee2e2;
+      --success: #10b981;
+      --success-light: #d1fae5;
+      --bg: #f0f4ff;
+      --card: #ffffff;
+      --text: #1e1b4b;
+      --muted: #6b7280;
+      --border: #e0e7ff;
+      --radius: 16px;
+      --shadow: 0 4px 24px rgba(79,70,229,0.10);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ========== LOGIN ========== */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+      padding: 20px;
+    }
+
+    .login-card {
+      background: white;
+      border-radius: 24px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      text-align: center;
+    }
+
+    .login-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 36px;
+    }
+
+    .login-card h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 28px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .login-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .input-group input:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 16px rgba(79,70,229,0.35);
+    }
+
+    .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(79,70,229,0.4); }
+    .btn-login:active { transform: translateY(0); }
+
+    .login-error {
+      background: var(--danger-light);
+      color: var(--danger);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 14px;
+      display: none;
+    }
+
+    /* ========== ADMIN PANEL ========== */
+    #admin-panel { display: none; }
+
+    header {
+      background: white;
+      border-bottom: 2px solid var(--border);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(79,70,229,0.07);
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-logo .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .header-logo h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 20px;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .header-logo span {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .photo-count-badge {
+      background: var(--border);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    .btn-logout {
+      padding: 8px 18px;
+      background: var(--danger-light);
+      color: var(--danger);
+      border: none;
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-logout:hover { background: #fecaca; }
+
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* ========== STATS ========== */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--border);
+    }
+
+    .stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .stat-icon.purple { background: #ede9fe; }
+    .stat-icon.amber  { background: #fef3c7; }
+    .stat-icon.green  { background: var(--success-light); }
+
+    .stat-info h3 {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .stat-info p {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    /* ========== UPLOAD ZONE ========== */
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 22px;
+      color: var(--text);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .upload-zone {
+      background: white;
+      border: 3px dashed var(--primary-light);
+      border-radius: var(--radius);
+      padding: 40px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .upload-zone:hover, .upload-zone.dragover {
+      background: #eef2ff;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .upload-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .upload-icon { font-size: 48px; margin-bottom: 12px; }
+
+    .upload-zone h3 {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .upload-zone p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .upload-zone .formats {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .format-tag {
+      background: var(--border);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* ========== PROGRESS ========== */
+    #upload-progress {
+      display: none;
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--border);
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar-bg {
+      background: var(--border);
+      border-radius: 20px;
+      height: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      background: linear-gradient(90deg, #4f46e5, #7c3aed);
+      height: 100%;
+      border-radius: 20px;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* ========== TOAST ========== */
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 15px;
+      color: white;
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+      pointer-events: none;
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #toast.success { background: var(--success); }
+    #toast.error   { background: var(--danger); }
+
+    /* ========== GALLERY ========== */
+    .gallery-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .search-bar {
+      position: relative;
+    }
+
+    .search-bar input {
+      padding: 10px 16px 10px 40px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      width: 220px;
+      transition: border 0.2s;
+    }
+
+    .search-bar input:focus { border-color: var(--primary); }
+
+    .search-bar .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    .btn-delete-all {
+      padding: 10px 18px;
+      background: var(--danger-light);
+      color: var(--danger);
+      border: none;
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .btn-delete-all:hover { background: #fecaca; }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .photo-card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .photo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(79,70,229,0.15);
+    }
+
+    .photo-thumb {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-info {
+      padding: 10px 12px;
+    }
+
+    .photo-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 8px;
+    }
+
+    .btn-delete {
+      width: 100%;
+      padding: 8px;
+      background: var(--danger-light);
+      color: var(--danger);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .btn-delete:hover { background: #fecaca; }
+
+    /* ========== EMPTY STATE ========== */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    .empty-state .empty-icon { font-size: 64px; margin-bottom: 16px; }
+    .empty-state h3 { font-size: 20px; font-weight: 800; margin-bottom: 6px; color: var(--text); }
+    .empty-state p { font-size: 14px; }
+
+    /* ========== LOADER ========== */
+    .loader {
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ========== CONFIRM MODAL ========== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-card {
+      background: white;
+      border-radius: 20px;
+      padding: 32px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: popIn 0.2s ease;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-card .modal-icon { font-size: 48px; margin-bottom: 14px; }
+    .modal-card h3 { font-family: 'Fredoka One', cursive; font-size: 22px; margin-bottom: 8px; }
+    .modal-card p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+
+    .modal-btns { display: flex; gap: 12px; }
+
+    .modal-btns button {
+      flex: 1;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+
+    .modal-btns button:hover { transform: translateY(-1px); }
+    .btn-cancel-modal { background: var(--border); color: var(--text); }
+    .btn-confirm-modal { background: var(--danger); color: white; }
+
+    /* ========== JSONBIN SETUP ========== */
+    .setup-banner {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      border: 2px solid #f59e0b;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .setup-banner .setup-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+
+    .setup-banner h3 { font-weight: 800; font-size: 16px; color: #92400e; margin-bottom: 8px; }
+    .setup-banner p { font-size: 13px; color: #78350f; line-height: 1.6; }
+
+    .setup-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .setup-fields input {
+      padding: 10px 14px;
+      border: 2px solid #f59e0b;
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      color: var(--text);
+      outline: none;
+      background: white;
+    }
+
+    .setup-fields input:focus { border-color: var(--primary); }
+
+    .btn-save-config {
+      margin-top: 12px;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-save-config:hover { background: #d97706; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 640px) {
+      header { padding: 0 16px; }
+      .main-content { padding: 20px 16px; }
+      .stats-row { grid-template-columns: 1fr; }
+      .setup-fields { grid-template-columns: 1fr; }
+      .photo-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+      .login-card { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-icon">🏫</div>
+    <h1>School Admin</h1>
+    <p>Gallery Management Panel</p>
+
+    <div class="input-group">
+      <label>Username</label>
+      <input type="text" id="login-user" placeholder="Enter username" autocomplete="off"/>
+    </div>
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="login-pass" placeholder="Enter password" onkeydown="if(event.key==='Enter') doLogin()"/>
+    </div>
+
+    <button class="btn-login" onclick="doLogin()">🔓 Login to Admin</button>
+    <div class="login-error" id="login-error">❌ Wrong username or password!</div>
+
+    <p style="margin-top:20px; font-size:12px; color:#9ca3af;">
+      Default: admin / school123 &nbsp;•&nbsp; Change in script
+    </p>
+  </div>
+</div>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div id="admin-panel">
+
+  <header>
+    <div class="header-logo">
+      <div class="logo-icon">🏫</div>
+      <div>
+        <h2>Gallery Admin</h2>
+        <span>School Photo Manager</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="photo-count-badge" id="header-count">0 Photos</span>
+      <button class="btn-logout" onclick="doLogout()">🚪 Logout</button>
+    </div>
+  </header>
+
+  <div class="main-content">
+
+    <!-- JSONBin Setup -->
+    <div class="setup-banner" id="setup-banner">
+      <div class="setup-icon">⚙️</div>
+      <div style="flex:1">
+        <h3>JSONBin.io Setup Required</h3>
+        <p>
+          Ek baar JSONBin API Key aur Bin ID daalni hogi taaki photos cloud mein save ho sakein.<br>
+          <a href="https://jsonbin.io" target="_blank" style="color:#d97706; font-weight:700;">jsonbin.io</a> par free account banao → API Keys section se key lo → ek naya Bin banao.
+        </p>
+        <div class="setup-fields">
+          <input type="text" id="cfg-apikey" placeholder="JSONBin API Key (X-Master-Key)" />
+          <input type="text" id="cfg-binid" placeholder="Bin ID (e.g. 64abc...)" />
+        </div>
+        <button class="btn-save-config" onclick="saveConfig()">💾 Save Config</button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon purple">🖼️</div>
+        <div class="stat-info">
+          <h3 id="stat-total">0</h3>
+          <p>Total Photos</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon amber">📤</div>
+        <div class="stat-info">
+          <h3 id="stat-session">0</h3>
+          <p>Uploaded This Session</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green">☁️</div>
+        <div class="stat-info">
+          <h3 id="stat-status">–</h3>
+          <p>Cloud Sync</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upload Zone -->
+    <div class="section-title">📤 Upload Photos</div>
+    <div class="upload-zone" id="upload-zone">
+      <input type="file" id="file-input" accept="image/*" multiple onchange="handleFiles(this.files)" />
+      <div class="upload-icon">📸</div>
+      <h3>Drag & Drop Photos Here</h3>
+      <p>ya click karke photos choose karo</p>
+      <div class="formats">
+        <span class="format-tag">JPG</span>
+        <span class="format-tag">PNG</span>
+        <span class="format-tag">WEBP</span>
+        <span class="format-tag">GIF</span>
+      </div>
+    </div>
+
+    <!-- Upload Progress -->
+    <div id="upload-progress">
+      <div class="progress-label">
+        <span id="progress-text">Uploading...</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="gallery-header">
+      <div class="section-title" style="margin-bottom:0">🖼️ Photo Gallery</div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search photos..." oninput="filterPhotos(this.value)" />
+        </div>
+        <button class="btn-delete-all" onclick="confirmDeleteAll()">🗑️ Delete All</button>
+      </div>
+    </div>
+
+    <div id="gallery-container">
+      <div class="loader"><div class="spinner"></div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== CONFIRM MODAL ===== -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-card">
+    <div class="modal-icon">⚠️</div>
+    <h3 id="modal-title">Are you sure?</h3>
+    <p id="modal-msg">Yeh action undo nahi ho sakta.</p>
+    <div class="modal-btns">
+      <button class="btn-cancel-modal" onclick="closeModal()">Cancel</button>
+      <button class="btn-confirm-modal" id="modal-confirm-btn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div id="toast"></div>
+
+<script>
+  // ============================================================
+  // CONFIG — CHANGE USERNAME & PASSWORD HERE
+  // ============================================================
+  const ADMIN_USER = "admin";
+  const ADMIN_PASS = "school123";
+
+  // JSONBin keys (also saved in localStorage)
+  let BIN_API_KEY = localStorage.getItem("sb_apikey") || "";
+  let BIN_ID      = localStorage.getItem("sb_binid")  || "";
+
+  // State
+  let photos       = [];   // { id, name, data (base64), uploadedAt }
+  let sessionCount = 0;
+  let modalAction  = null;
+
+  // ============================================================
+  // LOGIN
+  // ============================================================
+  function doLogin() {
+    const u = document.getElementById("login-user").value.trim();
+    const p = document.getElementById("login-pass").value;
+    if (u === ADMIN_USER && p === ADMIN_PASS) {
+      document.getElementById("login-screen").style.display = "none";
+      document.getElementById("admin-panel").style.display  = "block";
+      initPanel();
+    } else {
+      const err = document.getElementById("login-error");
+      err.style.display = "block";
+      setTimeout(() => err.style.display = "none", 3000);
+    }
+  }
+
+  function doLogout() {
+    document.getElementById("admin-panel").style.display  = "none";
+    document.getElementById("login-screen").style.display = "flex";
+    document.getElementById("login-user").value = "";
+    document.getElementById("login-pass").value = "";
+    sessionCount = 0;
+  }
+
+  // ============================================================
+  // JSONBIN CONFIG
+  // ============================================================
+  function saveConfig() {
+    BIN_API_KEY = document.getElementById("cfg-apikey").value.trim();
+    BIN_ID      = document.getElementById("cfg-binid").value.trim();
+    if (!BIN_API_KEY || !BIN_ID) { showToast("API Key aur Bin ID dono bharo!", "error"); return; }
+    localStorage.setItem("sb_apikey", BIN_API_KEY);
+    localStorage.setItem("sb_binid",  BIN_ID);
+    document.getElementById("setup-banner").style.display = "none";
+    showToast("✅ Config save ho gaya!", "success");
+    loadPhotos();
+  }
+
+  function checkConfig() {
+    if (BIN_API_KEY && BIN_ID) {
+      document.getElementById("setup-banner").style.display = "none";
+      return true;
+    }
+    // Pre-fill saved
+    document.getElementById("cfg-apikey").value = BIN_API_KEY;
+    document.getElementById("cfg-binid").value  = BIN_ID;
+    return false;
+  }
+
+  // ============================================================
+  // JSONBIN API
+  // ============================================================
+  async function fetchBin() {
+    const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+      headers: { "X-Master-Key": BIN_API_KEY }
+    });
+    if (!res.ok) throw new Error("Fetch failed: " + res.status);
+    const json = await res.json();
+    return json.record?.photos || [];
+  }
+
+  async function updateBin(data) {
+    const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": BIN_API_KEY
+      },
+      body: JSON.stringify({ photos: data })
+    });
+    if (!res.ok) throw new Error("Update failed: " + res.status);
+    return res.json();
+  }
+
+  // ============================================================
+  // LOAD PHOTOS
+  // ============================================================
+  async function loadPhotos() {
+    document.getElementById("gallery-container").innerHTML =
+      '<div class="loader"><div class="spinner"></div></div>';
+    updateStat("stat-status", "Syncing...");
+
+    try {
+      photos = await fetchBin();
+      updateStat("stat-status", "Synced ✅");
+    } catch (e) {
+      photos = [];
+      updateStat("stat-status", "Offline ⚠️");
+      showToast("Cloud se load nahi hua: " + e.message, "error");
+    }
+    renderGallery(photos);
+    updateStats();
+  }
+
+  // ============================================================
+  // UPLOAD FILES
+  // ============================================================
+  async function handleFiles(files) {
+    if (!files || !files.length) return;
+    if (!BIN_API_KEY || !BIN_ID) {
+      showToast("Pehle JSONBin config bharo!", "error");
+      return;
+    }
+
+    const prog = document.getElementById("upload-progress");
+    prog.style.display = "block";
+    let done = 0;
+
+    for (const file of files) {
+      updateProgress(done, files.length, `Uploading: ${file.name}`);
+      try {
+        const b64 = await fileToBase64(file);
+        const photo = {
+          id: Date.now() + "-" + Math.random().toString(36).slice(2, 7),
+          name: file.name,
+          data: b64,
+          uploadedAt: new Date().toLocaleString("en-IN")
+        };
+        photos.push(photo);
+        sessionCount++;
+      } catch (e) {
+        showToast(`${file.name} upload fail: ${e.message}`, "error");
+      }
+      done++;
+      updateProgress(done, files.length, `Uploaded ${done}/${files.length}`);
+    }
+
+    try {
+      await updateBin(photos);
+      showToast(`✅ ${done} photo(s) upload ho gayi!`, "success");
+      updateStat("stat-status", "Synced ✅");
+    } catch (e) {
+      showToast("Cloud save fail: " + e.message, "error");
+      updateStat("stat-status", "Error ❌");
+    }
+
+    prog.style.display = "none";
+    document.getElementById("file-input").value = "";
+    renderGallery(photos);
+    updateStats();
+  }
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload  = () => resolve(reader.result);
+      reader.onerror = () => reject(new Error("Read failed"));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function updateProgress(done, total, label) {
+    const pct = Math.round((done / total) * 100);
+    document.getElementById("progress-text").textContent = label;
+    document.getElementById("progress-pct").textContent  = pct + "%";
+    document.getElementById("progress-fill").style.width = pct + "%";
+  }
+
+  // ============================================================
+  // DELETE
+  // ============================================================
+  function confirmDelete(id, name) {
+    openModal(
+      "Photo Delete Karein?",
+      `"${name}" hamesha ke liye delete ho jayegi.`,
+      async () => {
+        photos = photos.filter(p => p.id !== id);
+        await saveToBin();
+        renderGallery(photos);
+        updateStats();
+        showToast("🗑️ Photo delete ho gayi!", "success");
+      }
+    );
+  }
+
+  function confirmDeleteAll() {
+    if (!photos.length) { showToast("Koi photo nahi hai!", "error"); return; }
+    openModal(
+      "Saari Photos Delete Karein?",
+      `Saari ${photos.length} photos permanently delete ho jayengi. Yeh undo nahi hoga!`,
+      async () => {
+        photos = [];
+        await saveToBin();
+        renderGallery(photos);
+        updateStats();
+        showToast("🗑️ Saari photos delete ho gayi!", "success");
+      }
+    );
+  }
+
+  async function saveToBin() {
+    try {
+      await updateBin(photos);
+      updateStat("stat-status", "Synced ✅");
+    } catch (e) {
+      showToast("Cloud save fail: " + e.message, "error");
+      updateStat("stat-status", "Error ❌");
+    }
+  }
+
+  // ============================================================
+  // RENDER GALLERY
+  // ============================================================
+  function renderGallery(list) {
+    const container = document.getElementById("gallery-container");
+    if (!list.length) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">🖼️</div>
+          <h3>Koi Photo Nahi Hai</h3>
+          <p>Upar se photos upload karo gallery mein dikhane ke liye.</p>
+        </div>`;
+      return;
+    }
+
+    container.innerHTML = `<div class="photo-grid">${
+      list.map(p => `
+        <div class="photo-card" id="card-${p.id}">
+          <img class="photo-thumb" src="${p.data}" alt="${p.name}" loading="lazy" />
+          <div class="photo-info">
+            <div class="photo-name" title="${p.name}">${p.name}</div>
+            <button class="btn-delete" onclick="confirmDelete('${p.id}', '${p.name.replace(/'/g,"\\'")}')">
+              🗑️ Delete
+            </button>
+          </div>
+        </div>
+      `).join("")
+    }</div>`;
+  }
+
+  function filterPhotos(query) {
+    const q = query.toLowerCase();
+    const filtered = photos.filter(p => p.name.toLowerCase().includes(q));
+    renderGallery(filtered);
+  }
+
+  // ============================================================
+  // STATS
+  // ============================================================
+  function updateStats() {
+    updateStat("stat-total",   photos.length);
+    updateStat("stat-session", sessionCount);
+    document.getElementById("header-count").textContent =
+      photos.length + " Photo" + (photos.length !== 1 ? "s" : "");
+  }
+
+  function updateStat(id, val) {
+    document.getElementById(id).textContent = val;
+  }
+
+  // ============================================================
+  // MODAL
+  // ============================================================
+  function openModal(title, msg, onConfirm) {
+    document.getElementById("modal-title").textContent = title;
+    document.getElementById("modal-msg").textContent   = msg;
+    document.getElementById("modal").classList.add("active");
+    modalAction = onConfirm;
+    document.getElementById("modal-confirm-btn").onclick = async () => {
+      closeModal();
+      if (modalAction) await modalAction();
+    };
+  }
+
+  function closeModal() {
+    document.getElementById("modal").classList.remove("active");
+    modalAction = null;
+  }
+
+  // ============================================================
+  // TOAST
+  // ============================================================
+  function showToast(msg, type = "success") {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.className   = `show ${type}`;
+    setTimeout(() => t.className = "", 3000);
+  }
+
+  // ============================================================
+  // DRAG & DROP
+  // ============================================================
+  const zone = document.getElementById("upload-zone");
+  if (zone) {
+    zone.addEventListener("dragover", e => { e.preventDefault(); zone.classList.add("dragover"); });
+    zone.addEventListener("dragleave", () => zone.classList.remove("dragover"));
+    zone.addEventListener("drop", e => {
+      e.preventDefault();
+      zone.classList.remove("dragover");
+      handleFiles(e.dataTransfer.files);
+    });
+  }
+
+  // ============================================================
+  // INIT
+  // ============================================================
+  function initPanel() {
+    if (checkConfig()) {
+      loadPhotos();
+    } else {
+      document.getElementById("gallery-container").innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">⚙️</div>
+          <h3>Config Setup Karo</h3>
+          <p>Upar JSONBin API Key aur Bin ID bharo photos load karne ke liye.</p>
+        </div>`;
+    }
+  }
+</script>
+</body>
+</html>
